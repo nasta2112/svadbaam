@@ -30,15 +30,9 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ЗАГОЛОВКИ */
+  /* Заголовки */
   h1, h2, h3, .serif { font-family: 'Playfair Display', serif; font-weight: 500; }
-  .names-title { 
-    font-family: 'Great Vibes', cursive; 
-    font-size: 56px; 
-    line-height: 1.1; 
-    color: var(--ink); 
-    margin: 15px 0 5px; 
-  }
+  .names-title { font-family: 'Great Vibes', cursive; font-size: 56px; line-height: 1.1; color: var(--ink); margin: 15px 0 5px; }
   .names-title span { color: var(--accent); font-size: 44px; vertical-align: middle; }
 
   /* КОНТЕЙНЕР */
@@ -62,17 +56,25 @@
     padding: 30px 20px;
     z-index: 2;
     overflow-y: auto;
-    background: transparent;
+    transition: opacity 0.4s ease;
+    opacity: 1;
   }
   
-  .screen.hidden { display: none !important; }
-
-  /* Анимация */
-  .fade-in { animation: slideUp 0.5s ease forwards; }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* По умолчанию все экраны скрыты, кроме первого */
+  .screen:not(#screen1) {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
   }
+
+  /* Скрываем по ID при переключении */
+  #slide1:checked ~ .app-container #screen1 { opacity: 0; pointer-events: none; z-index: 1; }
+  #slide2:checked ~ .app-container #screen2 { opacity: 1; pointer-events: auto; z-index: 2; }
+  #slide2:checked ~ .app-container #screen1 { opacity: 0; pointer-events: none; z-index: 1; }
+  #slide3:checked ~ .app-container #screen3 { opacity: 1; pointer-events: auto; z-index: 2; }
+  #slide3:checked ~ .app-container #screen2 { opacity: 0; pointer-events: none; z-index: 1; }
+  #slide4:checked ~ .app-container #screen4 { opacity: 1; pointer-events: auto; z-index: 2; }
+  #slide4:checked ~ .app-container #screen3 { opacity: 0; pointer-events: none; z-index: 1; }
 
   /* ТЕКСТ */
   .label { letter-spacing: .5em; text-transform: uppercase; font-size: 10px; color: var(--accent); margin-bottom: 10px; display: block; font-weight: 600; }
@@ -90,8 +92,9 @@
   .invite-text { font-size: 14px; line-height: 1.8; color: var(--ink); margin-bottom: 25px; max-width: 90%; font-weight: 300; }
   .invite-text p { margin-bottom: 12px; }
 
-  /* КНОПКИ */
+  /* КНОПКИ-МЕТКИ (ГЛАВНАЯ ФИШКА) */
   .btn {
+    display: inline-block;
     background: var(--accent); color: #fff;
     border: none; padding: 18px 30px; border-radius: 50px;
     font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
@@ -100,13 +103,11 @@
     width: 100%; max-width: 280px; margin-top: 15px;
     transition: background 0.3s;
     -webkit-tap-highlight-color: transparent;
-    position: relative;
-    z-index: 10; /* Защита от перекрытия */
+    text-align: center;
   }
   .btn:active { background: #9d735b; }
   .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent-light); box-shadow: none; }
   .btn-outline:active { background: rgba(184, 138, 110, 0.05); }
-  .btn:disabled { opacity: 0.6; }
 
   /* СТЕКЛО */
   .glass-card {
@@ -152,14 +153,23 @@
 
   /* ФИНАЛ */
   .heart { font-size: 50px; color: var(--accent); margin-bottom: 20px; }
+
+  /* Скрываем радио-кнопки */
+  input[type="radio"] { display: none; }
 </style>
 </head>
 <body>
 
+<!-- РАДИО-КНОПКИ ДЛЯ ПЕРЕКЛЮЧЕНИЯ (НЕВИДИМЫЕ) -->
+<input type="radio" name="slides" id="slide1" checked>
+<input type="radio" name="slides" id="slide2">
+<input type="radio" name="slides" id="slide3">
+<input type="radio" name="slides" id="slide4">
+
 <div class="app-container">
   
   <!-- ЭКРАН 1 -->
-  <div class="screen fade-in" id="screen1">
+  <div class="screen" id="screen1">
     <span class="label">Приглашение на свадьбу</span>
     <h1 class="names-title">Анастасия <span>&</span> Максим</h1>
     <p class="date">23 Января 2027</p>
@@ -174,12 +184,12 @@
       <p>Мы приглашаем вас разделить с нами самое сокровенное — радость создания нашей семьи. Будем счастливы видеть вас на нашем празднике!</p>
     </div>
 
-    <!-- type="button" защищает от перезагрузки страницы -->
-    <button type="button" class="btn" onclick="goTo(2)">Далее</button>
+    <!-- Кнопка "Далее" - это label для радио-кнопки -->
+    <label for="slide2" class="btn">Далее</label>
   </div>
 
   <!-- ЭКРАН 2 -->
-  <div class="screen hidden" id="screen2">
+  <div class="screen" id="screen2">
     <span class="label">Детали</span>
     <h2 class="serif" style="font-size: 30px; margin-bottom: 15px;">Когда и где?</h2>
     
@@ -205,13 +215,13 @@
     </div>
 
     <div style="display: flex; gap: 10px; width: 100%; max-width: 340px; justify-content: space-between;">
-      <button type="button" class="btn btn-outline" style="flex: 1;" onclick="goTo(1)">Назад</button>
-      <button type="button" class="btn" style="flex: 2;" onclick="goTo(3)">Подтвердить</button>
+      <label for="slide1" class="btn btn-outline" style="flex: 1;">Назад</label>
+      <label for="slide3" class="btn" style="flex: 2;">Подтвердить</label>
     </div>
   </div>
 
   <!-- ЭКРАН 3 -->
-  <div class="screen hidden" id="screen3">
+  <div class="screen" id="screen3">
     <span class="label">Анкета гостя</span>
     <h2 class="serif" style="font-size: 30px; margin-bottom: 5px;">Вы придёте?</h2>
     <p style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">Пожалуйста, ответьте до 23 декабря</p>
@@ -228,11 +238,11 @@
       <button type="submit" class="btn" id="submitBtn" style="max-width: 100%; margin-top: 5px;">Отправить</button>
     </form>
     
-    <button type="button" class="btn btn-outline" style="max-width: 200px; margin-top: 15px;" onclick="goTo(2)">← Назад</button>
+    <label for="slide2" class="btn btn-outline" style="max-width: 200px; margin-top: 15px;">← Назад</label>
   </div>
 
   <!-- ЭКРАН 4 -->
-  <div class="screen hidden" id="screen4">
+  <div class="screen" id="screen4">
     <div class="heart">🤍</div>
     <h2 class="serif" style="font-size: 34px; margin-bottom: 10px;">Спасибо!</h2>
     <p style="font-size: 15px; color: var(--muted); max-width: 280px;">Ваш ответ получен. Мы очень ждём встречи с вами и разделим этот счастливый день вместе!</p>
@@ -241,24 +251,6 @@
 </div>
 
 <script>
-  // Переключение экранов
-  function goTo(screenNumber) {
-    var screens = document.querySelectorAll('.screen');
-    for (var i = 0; i < screens.length; i++) {
-      screens[i].classList.add('hidden');
-      screens[i].classList.remove('fade-in');
-    }
-    
-    var target = document.getElementById('screen' + screenNumber);
-    if (target) {
-      target.classList.remove('hidden');
-      // Трюк для перезапуска анимации
-      void target.offsetWidth; 
-      target.classList.add('fade-in');
-      target.scrollTop = 0;
-    }
-  }
-
   // Таймер
   const targetDate = new Date('2027-01-23T16:00:00+04:00').getTime();
   
@@ -305,7 +297,8 @@
       const data = await res.json();
       
       if (data && data.ok) {
-        goTo(4);
+        // Переключаем на экран "Спасибо" через радио-кнопку
+        document.getElementById('slide4').checked = true;
       } else {
         alert('Ошибка. Попробуйте еще раз.');
         btn.disabled = false;

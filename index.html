@@ -4,294 +4,293 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Анастасия & Максим — Приглашение</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #fbf9f6;
-    --ink: #2b2a28;
-    --accent: #b88a6e;
-    --accent-light: #e3c7b5;
-    --muted: #8a847d;
-    --glass: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.8);
-    --shadow: 0 20px 40px rgba(184, 138, 110, 0.1);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
     font-family: 'Montserrat', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
+    background-color: #fbf9f6;
+    color: #2b2a28;
     line-height: 1.6;
     height: 100vh;
     overflow: hidden;
-    -webkit-font-smoothing: antialiased;
   }
 
-  /* Заголовки */
-  h1, h2, h3, .serif { font-family: 'Playfair Display', serif; font-weight: 500; }
-  .names-title { font-family: 'Great Vibes', cursive; font-size: 56px; line-height: 1.1; color: var(--ink); margin: 15px 0 5px; }
-  .names-title span { color: var(--accent); font-size: 44px; vertical-align: middle; }
-
-  /* КОНТЕЙНЕР */
+  /* Главный контейнер */
   .app-container {
     position: relative;
-    width: 100%; height: 100vh;
-    overflow: hidden;
+    width: 100%;
+    height: 100vh;
     max-width: 500px;
     margin: 0 auto;
+    overflow-y: auto; /* Прокрутка, если не влезет */
+    background-color: #fbf9f6;
   }
 
-  /* ЭКРАНЫ */
+  /* Экраны */
   .screen {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 20px 20px 40px; /* Увеличили нижний отступ, чтобы кнопки были выше */
-    z-index: 2;
-    overflow-y: auto;
-    transition: opacity 0.4s ease;
-    opacity: 1;
-  }
-  
-  .screen:not(#screen1) {
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1;
+    min-height: 100%;
+    padding: 30px 20px;
   }
 
-  /* Логика переключения */
-  #slide1:checked ~ .app-container #screen1 { opacity: 0; pointer-events: none; z-index: 1; }
-  #slide2:checked ~ .app-container #screen2 { opacity: 1; pointer-events: auto; z-index: 2; }
-  #slide2:checked ~ .app-container #screen1 { opacity: 0; pointer-events: none; z-index: 1; }
-  #slide3:checked ~ .app-container #screen3 { opacity: 1; pointer-events: auto; z-index: 2; }
-  #slide3:checked ~ .app-container #screen2 { opacity: 0; pointer-events: none; z-index: 1; }
-  #slide4:checked ~ .app-container #screen4 { opacity: 1; pointer-events: auto; z-index: 2; }
-  #slide4:checked ~ .app-container #screen3 { opacity: 0; pointer-events: none; z-index: 1; }
+  /* Показываем активный экран */
+  .screen.active {
+    display: flex;
+  }
 
-  /* ТЕКСТ */
-  .label { letter-spacing: .5em; text-transform: uppercase; font-size: 10px; color: var(--accent); margin-bottom: 10px; display: block; font-weight: 600; }
-  .date { font-size: 14px; letter-spacing: .3em; color: var(--muted); margin-top: 5px; margin-bottom: 20px; text-transform: uppercase; }
+  /* Текст */
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+  .names-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 50px;
+    line-height: 1.1;
+    margin: 10px 0;
+    color: #2b2a28;
+  }
+  .names-title span { color: #b88a6e; font-size: 40px; }
   
-  /* ФОТО (УМЕНЬШЕНЫ) */
-  .photos { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; width: 100%; max-width: 260px; } /* Было 340px */
+  .label { text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #b88a6e; margin-bottom: 5px; font-weight: 600; }
+  .date { font-size: 13px; letter-spacing: 2px; color: #8a847d; margin-bottom: 25px; }
+
+  /* Фото */
+  .photos { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
   .photos img {
-    width: 48%; aspect-ratio: 3 / 4; object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
     border: 2px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
 
-  .invite-text { font-size: 14px; line-height: 1.7; color: var(--ink); margin-bottom: 15px; max-width: 90%; font-weight: 300; }
-  .invite-text p { margin-bottom: 10px; }
+  .text-block { font-size: 14px; margin-bottom: 25px; font-weight: 400; }
+  .text-block p { margin-bottom: 10px; }
 
-  /* КНОПКИ (КРУПНЕЕ) */
+  /* Кнопки */
   .btn {
-    display: inline-block;
-    background: var(--accent); color: #fff;
-    border: none; 
-    padding: 20px 40px; /* Увеличили размер */
-    border-radius: 50px;
-    font-size: 15px; /* Увеличили шрифт */
-    letter-spacing: .15em; 
-    text-transform: uppercase;
-    cursor: pointer; 
-    font-family: inherit; 
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    padding: 16px;
+    background-color: #b88a6e;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
     font-weight: 600;
-    box-shadow: 0 10px 25px rgba(184, 138, 110, 0.4);
-    width: 100%; 
-    max-width: 320px; /* Сделали шире */
-    margin-top: 10px;
-    margin-bottom: 10px;
-    transition: background 0.3s;
-    -webkit-tap-highlight-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-align: center;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(184, 138, 110, 0.3);
   }
-  .btn:active { background: #9d735b; }
-  .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent-light); box-shadow: none; }
-  .btn-outline:active { background: rgba(184, 138, 110, 0.05); }
+  .btn:active { background-color: #9d735b; }
+  .btn-outline { background-color: transparent; color: #b88a6e; border: 1px solid #b88a6e; box-shadow: none; }
 
-  /* СТЕКЛО */
-  .glass-card {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 30px 25px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    width: 100%; max-width: 340px;
+  /* Карточка */
+  .card {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
   }
 
-  /* АНКЕТА */
-  form { width: 100%; max-width: 320px; text-align: left; margin-top: 10px; }
-  input, select, textarea {
-    width: 100%; padding: 16px; margin-bottom: 12px;
-    border: 1px solid rgba(184, 138, 110, 0.2); border-radius: 12px;
-    font-family: inherit; font-size: 14px; background: rgba(255,255,255,0.9); color: var(--ink);
-  }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
-
-  /* ДЕТАЛИ */
-  .details-card h3 { font-size: 26px; margin-bottom: 8px; color: var(--ink); }
-  .details-card p { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
-  
+  /* Детали */
+  .card h3 { font-size: 22px; margin-bottom: 5px; }
+  .card p { font-size: 13px; color: #8a847d; }
   .dress-code {
-    background: rgba(184, 138, 110, 0.06);
-    padding: 18px; border-radius: 14px;
-    border: 1px solid rgba(184, 138, 110, 0.15);
-    text-align: left; font-size: 13px; margin-top: 20px; line-height: 1.6;
+    background-color: #f4efeb;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 12px;
+    margin-top: 15px;
   }
-  .dress-code strong { color: var(--accent); display: block; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .dress-code strong { color: #b88a6e; display: block; margin-bottom: 5px; font-size: 10px; text-transform: uppercase; }
 
-  /* ТАЙМЕР */
-  .timer-container { margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(184, 138, 110, 0.3); }
-  .timer-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px; }
-  .countdown { display: flex; justify-content: center; gap: 18px; }
-  .countdown-item { display: flex; flex-direction: column; align-items: center; }
-  .countdown-item b { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); line-height: 1; font-weight: 600; }
-  .countdown-item small { font-size: 9px; text-transform: uppercase; color: var(--muted); margin-top: 6px; letter-spacing: 0.1em; }
+  /* Таймер */
+  .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+  .timer div { text-align: center; }
+  .timer b { font-size: 22px; color: #b88a6e; display: block; font-family: 'Playfair Display', serif;}
+  .timer span { font-size: 9px; text-transform: uppercase; color: #8a847d; }
 
-  /* ФИНАЛ */
-  .heart { font-size: 50px; color: var(--accent); margin-bottom: 20px; }
+  /* Форма */
+  input, select, textarea {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    border: 1px solid #ddd; border-radius: 8px;
+    font-family: 'Montserrat', sans-serif; font-size: 14px;
+  }
+  input:focus, select:focus { outline: none; border-color: #b88a6e; }
 
   /* Скрываем радио-кнопки */
-  input[type="radio"] { display: none; }
+  .radio { display: none; }
+
+  .heart { font-size: 40px; color: #b88a6e; margin-bottom: 15px; }
 </style>
 </head>
 <body>
 
-<!-- РАДИО-КНОПКИ -->
-<input type="radio" name="slides" id="slide1" checked>
-<input type="radio" name="slides" id="slide2">
-<input type="radio" name="slides" id="slide3">
-<input type="radio" name="slides" id="slide4">
+<!-- Невидимые переключатели -->
+<input type="radio" name="slide" id="s1" class="radio" checked>
+<input type="radio" name="slide" id="s2" class="radio">
+<input type="radio" name="slide" id="s3" class="radio">
+<input type="radio" name="slide" id="s4" class="radio">
 
 <div class="app-container">
-  
+
   <!-- ЭКРАН 1 -->
-  <div class="screen" id="screen1">
-    <span class="label">Приглашение на свадьбу</span>
+  <div class="screen active" id="sc1">
+    <div class="label">Приглашение на свадьбу</div>
     <h1 class="names-title">Анастасия <span>&</span> Максим</h1>
-    <p class="date">23 Января 2027</p>
-    
+    <div class="date">23 ЯНВАРЯ 2027</div>
+
     <div class="photos">
       <img src="https://e.radikal.host/2026/11/16/3b98b6ea5bd3e94d1.jpg" alt="Фото 1">
       <img src="https://e.radikal.host/2026/11/16/2fa01d6dfd94686bf.jpg" alt="Фото 2">
     </div>
 
-    <div class="invite-text">
+    <div class="text-block">
       <p>Дорогие друзья и близкие!</p>
-      <p>Мы приглашаем вас разделить с нами самое сокровенное — радость создания нашей семьи. Будем счастливы видеть вас на нашем празднике!</p>
+      <p>Мы приглашаем вас разделить с нами самый важный и торжественный день в нашей жизни.</p>
     </div>
 
-    <label for="slide2" class="btn">Далее</label>
+    <label for="s2" class="btn">Далее</label>
   </div>
 
   <!-- ЭКРАН 2 -->
-  <div class="screen" id="screen2">
-    <span class="label">Детали</span>
-    <h2 class="serif" style="font-size: 30px; margin-bottom: 15px;">Когда и где?</h2>
-    
-    <div class="glass-card details-card">
-      <h3 class="serif">Ресторан «Дежавю»</h3>
+  <div class="screen" id="sc2">
+    <div class="label">Детали</div>
+    <h2 style="font-size: 26px; margin-bottom: 15px;">Когда и где?</h2>
+
+    <div class="card">
+      <h3>Ресторан «Дежавю»</h3>
       <p>г. Ульяновск, Омская улица, 4</p>
-      <p style="color: var(--accent); margin-top: 10px; font-weight: 500;">Сбор гостей в 16:00</p>
-      
+      <p style="color: #b88a6e; margin-top: 10px; font-weight: 600;">Сбор гостей в 16:00</p>
+
       <div class="dress-code">
         <strong>Дресс-код</strong>
         Строгих правил нет! Нам будет приятно, если вы выберете удобный и красивый наряд. Главное — возьмите с собой улыбки и отличное настроение!
       </div>
 
-      <div class="timer-container">
-        <div class="timer-title">До встречи осталось:</div>
-        <div class="countdown" id="countdown">
-          <div class="countdown-item"><b id="d">0</b><small>дней</small></div>
-          <div class="countdown-item"><b id="h">0</b><small>часов</small></div>
-          <div class="countdown-item"><b id="m">0</b><small>минут</small></div>
-          <div class="countdown-item"><b id="s">0</b><small>секунд</small></div>
-        </div>
+      <div class="timer">
+        <div><b id="d">00</b><span>дней</span></div>
+        <div><b id="h">00</b><span>часов</span></div>
+        <div><b id="m">00</b><span>минут</span></div>
+        <div><b id="s">00</b><span>секунд</span></div>
       </div>
     </div>
 
-    <div style="display: flex; gap: 10px; width: 100%; max-width: 340px; justify-content: space-between;">
-      <label for="slide1" class="btn btn-outline" style="flex: 1; max-width: 100px; padding: 20px 10px;">Назад</label>
-      <label for="slide3" class="btn" style="flex: 2; max-width: 200px;">Подтвердить</label>
+    <div style="display: flex; gap: 10px; width: 100%; max-width: 340px;">
+      <label for="s1" class="btn btn-outline" style="flex: 1;">Назад</label>
+      <label for="s3" class="btn" style="flex: 2;">Далее</label>
     </div>
   </div>
 
   <!-- ЭКРАН 3 -->
-  <div class="screen" id="screen3">
-    <span class="label">Анкета гостя</span>
-    <h2 class="serif" style="font-size: 30px; margin-bottom: 5px;">Вы придёте?</h2>
-    <p style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">Пожалуйста, ответьте до 23 декабря</p>
-    
-    <form onsubmit="return sendRSVP(event)" class="glass-card" style="padding: 25px;">
-      <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
-      <select id="attend" required>
-        <option value="" disabled selected>Вы придёте?</option>
-        <option>Да, с удовольствием!</option>
-        <option>К сожалению, не смогу</option>
-      </select>
-      <textarea id="msg" rows="2" placeholder="Пожелания (необязательно)"></textarea>
-      
-      <button type="submit" class="btn" id="submitBtn" style="max-width: 100%; margin-top: 10px;">Отправить</button>
-    </form>
-    
-    <label for="slide2" class="btn btn-outline" style="max-width: 200px; margin-top: 15px;">← Назад</label>
+  <div class="screen" id="sc3">
+    <div class="label">Анкета</div>
+    <h2 style="font-size: 26px; margin-bottom: 5px;">Вы придёте?</h2>
+    <p style="font-size: 12px; color: #8a847d; margin-bottom: 15px;">Пожалуйста, ответьте до 23 декабря</p>
+
+    <div class="card" style="padding: 20px;">
+      <form onsubmit="return sendForm(event)">
+        <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
+        <select id="attend" required>
+          <option value="" disabled selected>Вы придёте?</option>
+          <option>Да, с удовольствием!</option>
+          <option>К сожалению, не смогу</option>
+        </select>
+        <textarea id="msg" rows="2" placeholder="Пожелания (необязательно)"></textarea>
+        
+        <button type="submit" class="btn" id="subBtn" style="max-width: 100%; margin-top: 5px;">Отправить</button>
+      </form>
+    </div>
+
+    <label for="s2" class="btn btn-outline" style="max-width: 200px;">← Назад</label>
   </div>
 
   <!-- ЭКРАН 4 -->
-  <div class="screen" id="screen4">
+  <div class="screen" id="sc4">
     <div class="heart">🤍</div>
-    <h2 class="serif" style="font-size: 34px; margin-bottom: 10px;">Спасибо!</h2>
-    <p style="font-size: 15px; color: var(--muted); max-width: 280px;">Ваш ответ получен. Мы очень ждём встречи с вами и разделим этот счастливый день вместе!</p>
+    <h2 style="font-size: 30px; margin-bottom: 10px;">Спасибо!</h2>
+    <p style="font-size: 14px; color: #8a847d;">Ваш ответ получен. Мы очень ждём встречи с вами!</p>
   </div>
 
 </div>
 
 <script>
+  // Переключение экранов через CSS (без JS)
+  // Мы используем CSS-правила, чтобы показывать нужный экран в зависимости от выбранной радиокнопки.
+  // Добавляем стили для этого прямо в <style> выше, но для надежности продублируем логику.
+  
+  // (Логика скрытия/показа уже прописана в CSS через псевдоклассы, но так как мы используем радио-кнопки,
+  // нам нужно убедиться, что экраны переключаются).
+  
+  // В CSS выше мы не прописали :checked ~ .app-container #sc1 { display: flex; }
+  // Поэтому добавим это в JS для 100% надежности (на случай, если CSS не подхватится).
+
+  const s1 = document.getElementById('s1');
+  const s2 = document.getElementById('s2');
+  const s3 = document.getElementById('s3');
+  const s4 = document.getElementById('s4');
+
+  const sc1 = document.getElementById('sc1');
+  const sc2 = document.getElementById('sc2');
+  const sc3 = document.getElementById('sc3');
+  const sc4 = document.getElementById('sc4');
+
+  function updateScreens() {
+    sc1.classList.remove('active');
+    sc2.classList.remove('active');
+    sc3.classList.remove('active');
+    sc4.classList.remove('active');
+
+    if (s1.checked) sc1.classList.add('active');
+    if (s2.checked) sc2.classList.add('active');
+    if (s3.checked) sc3.classList.add('active');
+    if (s4.checked) sc4.classList.add('active');
+  }
+
+  s1.addEventListener('change', updateScreens);
+  s2.addEventListener('change', updateScreens);
+  s3.addEventListener('change', updateScreens);
+  s4.addEventListener('change', updateScreens);
+
   // Таймер
   const targetDate = new Date('2027-01-23T16:00:00+04:00').getTime();
-  
   function updateTimer() {
     const now = new Date().getTime();
     const diff = Math.max(0, targetDate - now);
-    
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    
-    document.getElementById('d').textContent = String(d).padStart(2, '0');
-    document.getElementById('h').textContent = String(h).padStart(2, '0');
-    document.getElementById('m').textContent = String(m).padStart(2, '0');
-    document.getElementById('s').textContent = String(s).padStart(2, '0');
+    document.getElementById('d').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+    document.getElementById('h').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+    document.getElementById('m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    document.getElementById('s').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
   }
-  
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // Отправка в Telegram
+  // Отправка
   const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
   const CHAT_ID = '-1004337417866';
 
-  async function sendRSVP(e) {
+  async function sendForm(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const attend = document.getElementById('attend').value;
     const msg = document.getElementById('msg').value.trim();
-    const btn = document.getElementById('submitBtn');
+    const btn = document.getElementById('subBtn');
 
     const text = `💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`;
-
     btn.disabled = true;
     btn.textContent = 'Отправка...';
 
@@ -304,7 +303,8 @@
       const data = await res.json();
       
       if (data && data.ok) {
-        document.getElementById('slide4').checked = true;
+        s4.checked = true;
+        updateScreens();
       } else {
         alert('Ошибка. Попробуйте еще раз.');
         btn.disabled = false;

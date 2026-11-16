@@ -29,36 +29,16 @@
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
-  
-  /* Живой фон с плавающими лепестками */
-  .floating-leaves {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .leaf {
-    position: absolute;
-    background: radial-gradient(circle, #f3dcd1 0%, #e8c6b6 100%);
-    border-radius: 50% 0 50% 50%;
-    opacity: 0.4;
-    animation: float 15s infinite ease-in-out;
-  }
-  .leaf:nth-child(1) { width: 15px; height: 15px; top: 10%; left: 10%; animation-duration: 12s; }
-  .leaf:nth-child(2) { width: 25px; height: 25px; top: 20%; left: 80%; animation-duration: 18s; animation-delay: 2s; }
-  .leaf:nth-child(3) { width: 10px; height: 10px; top: 70%; left: 20%; animation-duration: 14s; animation-delay: 4s; }
-  .leaf:nth-child(4) { width: 20px; height: 20px; top: 80%; left: 70%; animation-duration: 16s; }
-  .leaf:nth-child(5) { width: 18px; height: 18px; top: 40%; left: 50%; animation-duration: 20s; animation-delay: 1s; }
-  @keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(15deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-  }
 
-  /* Заголовки */
+  /* ЗАГОЛОВКИ */
   h1, h2, h3, .serif { font-family: 'Playfair Display', serif; font-weight: 500; }
-  .names-title { font-family: 'Great Vibes', cursive; font-size: 56px; line-height: 1.1; color: var(--ink); margin: 15px 0 5px; }
+  .names-title { 
+    font-family: 'Great Vibes', cursive; 
+    font-size: 56px; 
+    line-height: 1.1; 
+    color: var(--ink); 
+    margin: 15px 0 5px; 
+  }
   .names-title span { color: var(--accent); font-size: 44px; vertical-align: middle; }
 
   /* КОНТЕЙНЕР */
@@ -68,7 +48,6 @@
     overflow: hidden;
     max-width: 500px;
     margin: 0 auto;
-    z-index: 1;
   }
 
   /* ЭКРАНЫ */
@@ -84,19 +63,14 @@
     z-index: 2;
     overflow-y: auto;
     background: transparent;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  .screen.hidden {
-    display: none !important;
-  }
+  .screen.hidden { display: none !important; }
 
-  /* Анимация появления */
-  .fade-in {
-    animation: slideUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  }
+  /* Анимация */
+  .fade-in { animation: slideUp 0.5s ease forwards; }
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -109,11 +83,9 @@
   .photos img {
     width: 48%; aspect-ratio: 3 / 4; object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     border: 2px solid #fff;
-    transition: transform 0.3s;
   }
-  .photos img:hover { transform: scale(1.02); }
 
   .invite-text { font-size: 14px; line-height: 1.8; color: var(--ink); margin-bottom: 25px; max-width: 90%; font-weight: 300; }
   .invite-text p { margin-bottom: 12px; }
@@ -126,15 +98,17 @@
     cursor: pointer; font-family: inherit; font-weight: 500;
     box-shadow: 0 10px 25px rgba(184, 138, 110, 0.3);
     width: 100%; max-width: 280px; margin-top: 15px;
-    transition: all 0.3s ease;
+    transition: background 0.3s;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 10; /* Защита от перекрытия */
   }
-  .btn:active { transform: scale(0.96); box-shadow: 0 5px 15px rgba(184, 138, 110, 0.4); }
+  .btn:active { background: #9d735b; }
   .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent-light); box-shadow: none; }
   .btn-outline:active { background: rgba(184, 138, 110, 0.05); }
   .btn:disabled { opacity: 0.6; }
 
-  /* ЭФФЕКТ СТЕКЛА (Glassmorphism) */
+  /* СТЕКЛО */
   .glass-card {
     background: var(--glass);
     border: 1px solid var(--glass-border);
@@ -153,7 +127,6 @@
     width: 100%; padding: 16px; margin-bottom: 12px;
     border: 1px solid rgba(184, 138, 110, 0.2); border-radius: 12px;
     font-family: inherit; font-size: 14px; background: rgba(255,255,255,0.9); color: var(--ink);
-    transition: all 0.3s;
   }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
 
@@ -178,18 +151,10 @@
   .countdown-item small { font-size: 9px; text-transform: uppercase; color: var(--muted); margin-top: 6px; letter-spacing: 0.1em; }
 
   /* ФИНАЛ */
-  .heart { font-size: 50px; color: var(--accent); margin-bottom: 20px; animation: heartbeat 1.5s infinite; }
-  @keyframes heartbeat {
-    0% { transform: scale(1); } 15% { transform: scale(1.1); } 30% { transform: scale(1); } 45% { transform: scale(1.1); } 60% { transform: scale(1); }
-  }
+  .heart { font-size: 50px; color: var(--accent); margin-bottom: 20px; }
 </style>
 </head>
 <body>
-
-<!-- ФОН С ЛЕПЕСТКАМИ -->
-<div class="floating-leaves">
-  <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
-</div>
 
 <div class="app-container">
   
@@ -209,6 +174,7 @@
       <p>Мы приглашаем вас разделить с нами самое сокровенное — радость создания нашей семьи. Будем счастливы видеть вас на нашем празднике!</p>
     </div>
 
+    <!-- type="button" защищает от перезагрузки страницы -->
     <button type="button" class="btn" onclick="goTo(2)">Далее</button>
   </div>
 
@@ -275,7 +241,7 @@
 </div>
 
 <script>
-  // === ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ ===
+  // Переключение экранов
   function goTo(screenNumber) {
     var screens = document.querySelectorAll('.screen');
     for (var i = 0; i < screens.length; i++) {
@@ -286,13 +252,14 @@
     var target = document.getElementById('screen' + screenNumber);
     if (target) {
       target.classList.remove('hidden');
+      // Трюк для перезапуска анимации
       void target.offsetWidth; 
       target.classList.add('fade-in');
       target.scrollTop = 0;
     }
   }
 
-  // === ТАЙМЕР ===
+  // Таймер
   const targetDate = new Date('2027-01-23T16:00:00+04:00').getTime();
   
   function updateTimer() {
@@ -313,7 +280,7 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // === ОТПРАВКА В TELEGRAM ===
+  // Отправка в Telegram
   const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
   const CHAT_ID = '-1004337417866';
 

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анастасия & Максим — Приглашение</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f1ee; --ink:#3a3330; --accent:#c08a9b; --accent2:#9c6b7a; --muted:#8f8380;
+    --card:#fffaf8; --border:#ecd9de; --input-border:#e3cdd3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow:hidden;height:100vh}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600}
+
+  /* КОНТЕЙНЕР ЭКРАНОВ */
+  .app-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg);
+    box-shadow: 0 0 40px rgba(0,0,0,0.1);
+  }
+
+  /* ЭКРАНЫ */
+  .screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 24px;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+    background: var(--bg);
+    z-index: 1;
+    overflow-y: auto;
+  }
+  
+  /* Скрытие экранов */
+  .screen.hidden {
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ЭЛЕМЕНТЫ */
+  .label{letter-spacing:.35em;text-transform:uppercase;font-size:11px;color:var(--accent2);margin-bottom:10px;display:block}
+  .date{font-size:18px;letter-spacing:.2em;color:var(--accent2);margin-top:10px;margin-bottom:25px}
+  
+  /* ФОТО В РЯД (ТЕПЕРЬ ДВА ПО ЦЕНТРУ) */
+  .photos {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 400px; /* Ограничили ширину, чтобы два фото смотрелись аккуратно */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .photos img {
+    width: 48%; /* Каждое фото занимает почти половину от 400px */
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 20px rgba(192,138,155,.2);
+  }
+
+  .invite-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--accent2);
+    margin-bottom: 30px;
+    font-weight: 500;
+    max-width: 95%;
+  }
+  .invite-text p { margin-bottom: 15px; }
+
+  /* КНОПКИ */
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-size: 14px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    font-family: inherit;
+    box-shadow: 0 4px 15px rgba(192,138,155,0.4);
+  }
+  .btn:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn:disabled { opacity: 0.6; cursor: wait; }
+
+  /* АНКЕТА */
+  form { width: 100%; max-width: 350px; text-align: left; margin-top: 20px; }
+  input, select, textarea {
+    width: 100%; padding: 14px 16px; margin-bottom: 12px;
+    border: 1px solid var(--input-border); border-radius: 10px;
+    font-family: inherit; font-size: 15px; background: var(--card); color: var(--ink);
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* СТИЛИ ДЛЯ 2 ЭКРАНА (ДЕТАЛИ) */
+  .details-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(192,138,155,.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  .details-card h3 { font-size: 26px; margin-bottom: 5px; color: var(--ink); }
+  .details-card p { font-size: 15px; color: var(--muted); margin-bottom: 10px; }
+  
+  .dress-code {
+    background: rgba(192,138,155,0.08);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+    text-align: left;
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 1.5;
+  }
+  .dress-code strong { color: var(--accent2); display: block; margin-bottom: 5px; }
+
+  /* СТИЛИ ДЛЯ 4 ЭКРАНА */
+  .heart { font-size: 50px; color: var(--accent); margin-bottom: 15px; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- ЭКРАН 1: ПРИВЕТСТВИЕ -->
+  <div class="screen" id="screen1">
+    <span class="label">Приглашение на свадьбу</span>
+    <h1 class="serif" style="font-size: 40px; line-height: 1.1; margin-bottom: 5px;">Анастасия <span style="color:var(--accent)">&</span> Максим</h1>
+    <p class="date">23 ЯНВАРЯ 2027</p>
+    
+    <div class="photos">
+      <!-- Оставлены только два первых фото -->
+      <img src="https://e.radikal.host/2026/11/16/3b98b6ea5bd3e94d1.jpg" alt="Фото 1">
+      <img src="https://e.radikal.host/2026/11/16/2fa01d6dfd94686bf.jpg" alt="Фото 2">
+    </div>
+
+    <div class="invite-text">
+      <p>Дорогие друзья и близкие!</p>
+      <p>В этот прекрасный день мы хотим разделить с вами самое сокровенное — радость создания нашей семьи. Приглашаем вас стать частью нашего торжества, разделить с нами смех, счастливые улыбки и тёплые объятия.</p>
+      <p>Пусть этот день станет красивым началом нашей общей истории. Будем счастливы видеть вас!</p>
+    </div>
+
+    <button class="btn" onclick="nextScreen(1, 2)">Далее</button>
+  </div>
+
+  <!-- ЭКРАН 2: МЕСТО И ДРЕСС-КОД -->
+  <div class="screen hidden" id="screen2">
+    <span class="label">Детали</span>
+    <h2 class="serif" style="font-size: 30px; margin-bottom: 15px;">Когда и где?</h2>
+    
+    <div class="details-card">
+      <h3 class="serif">Ресторан «Дежавю»</h3>
+      <p>г. Ульяновск, Омская улица, 4</p>
+      <p style="font-size: 14px; color: var(--accent2); margin-bottom: 15px;">Сбор гостей в 16:00</p>
+      
+      <div class="dress-code">
+        <strong>Дресс-код</strong>
+        Строгих правил и дресс-кода нет! Нам будет очень приятно, если вы выберете для себя красивый и удобный наряд, в котором вам будет комфортно разделить с нами этот тёплый и счастливый вечер. А главное — обязательно возьмите с собой улыбки, смех и отличное настроение!
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 10px; width: 100%; max-width: 400px; justify-content: space-between;">
+      <button class="btn" style="background: var(--muted); box-shadow: none; flex: 1;" onclick="nextScreen(2, 1)">Назад</button>
+      <button class="btn" style="flex: 2;" onclick="nextScreen(2, 3)">Подтвердить</button>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 3: АНКЕТА -->
+  <div class="screen hidden" id="screen3">
+    <span class="label">Анкета гостя</span>
+    <h2 class="serif" style="font-size: 30px; margin-bottom: 5px;">Вы придёте?</h2>
+    <p style="font-size: 14px; color: var(--muted); margin-bottom: 15px;">Пожалуйста, ответьте до 23 декабря</p>
+
+    <form onsubmit="return sendRSVP(event)">
+      <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
+      <select id="attend" required>
+        <option value="" disabled selected>Вы придёте?</option>
+        <option>Да, с удовольствием!</option>
+        <option>К сожалению, не смогу</option>
+      </select>
+      <textarea id="msg" rows="2" placeholder="Ваши пожелания (необязательно)"></textarea>
+      
+      <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Отправить</button>
+    </form>
+    
+    <button class="btn" style="background: transparent; color: var(--muted); box-shadow: none; margin-top: 15px; padding: 5px;" onclick="nextScreen(3, 2)">← Назад</button>
+  </div>
+
+  <!-- ЭКРАН 4: СПАСИБО -->
+  <div class="screen hidden" id="screen4">
+    <div class="heart">🤍</div>
+    <h2 class="serif" style="font-size: 34px; margin-bottom: 15px;">Спасибо!</h2>
+    <p style="font-size: 18px; color: var(--accent2); max-width: 300px; margin-bottom: 20px;">Ваш ответ получен. Мы очень ждём встречи с вами и разделим этот счастливый день вместе!</p>
+    <p style="font-size: 14px; color: var(--muted);">С любовью, Анастасия и Максим</p>
+  </div>
+
+</div>
+
+<script>
+  // === ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ ===
+  function nextScreen(currentId, nextId) {
+    document.getElementById('screen' + currentId).classList.add('hidden');
+    document.getElementById('screen' + nextId).classList.remove('hidden');
+  }
+
+  // === ОТПРАВКА В TELEGRAM ===
+  const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
+  const CHAT_ID = '-1004337417866';
+
+  async function sendRSVP(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const attend = document.getElementById('attend').value;
+    const msg = document.getElementById('msg').value.trim();
+    const btn = document.getElementById('submitBtn');
+
+    const text = `💌 Свадьба Анастасии и Максима\n` +
+                 `👤 Имя: ${name}\n` +
+                 `✅ Присутствие: ${attend}\n` +
+                 `💬 Пожелания: ${msg || '—'}`;
+
+    btn.disabled = true;
+    btn.textContent = 'Отправляем...';
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ chat_id: CHAT_ID, text: text })
+      });
+      const data = await res.json();
+      
+      if (data && data.ok) {
+        document.getElementById('screen3').classList.add('hidden');
+        document.getElementById('screen4').classList.remove('hidden');
+      } else {
+        alert('Ошибка отправки. Попробуйте еще раз.');
+        btn.disabled = false;
+        btn.textContent = 'Отправить';
+      }
+    } catch (err) {
+      alert('Ошибка сети. Проверьте интернет.');
+      btn.disabled = false;
+      btn.textContent = 'Отправить';
+    }
+    return false;
+  }
+</script>
+</body>
+</html>

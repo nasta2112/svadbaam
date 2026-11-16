@@ -53,21 +53,20 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 30px 20px;
+    padding: 20px 20px 40px; /* Увеличили нижний отступ, чтобы кнопки были выше */
     z-index: 2;
     overflow-y: auto;
     transition: opacity 0.4s ease;
     opacity: 1;
   }
   
-  /* По умолчанию все экраны скрыты, кроме первого */
   .screen:not(#screen1) {
     opacity: 0;
     pointer-events: none;
     z-index: 1;
   }
 
-  /* Скрываем по ID при переключении */
+  /* Логика переключения */
   #slide1:checked ~ .app-container #screen1 { opacity: 0; pointer-events: none; z-index: 1; }
   #slide2:checked ~ .app-container #screen2 { opacity: 1; pointer-events: auto; z-index: 2; }
   #slide2:checked ~ .app-container #screen1 { opacity: 0; pointer-events: none; z-index: 1; }
@@ -78,29 +77,38 @@
 
   /* ТЕКСТ */
   .label { letter-spacing: .5em; text-transform: uppercase; font-size: 10px; color: var(--accent); margin-bottom: 10px; display: block; font-weight: 600; }
-  .date { font-size: 14px; letter-spacing: .3em; color: var(--muted); margin-top: 5px; margin-bottom: 25px; text-transform: uppercase; }
+  .date { font-size: 14px; letter-spacing: .3em; color: var(--muted); margin-top: 5px; margin-bottom: 20px; text-transform: uppercase; }
   
-  /* ФОТО */
-  .photos { display: flex; gap: 15px; justify-content: center; margin-bottom: 25px; width: 100%; max-width: 340px; }
+  /* ФОТО (УМЕНЬШЕНЫ) */
+  .photos { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; width: 100%; max-width: 260px; } /* Было 340px */
   .photos img {
     width: 48%; aspect-ratio: 3 / 4; object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     border: 2px solid #fff;
   }
 
-  .invite-text { font-size: 14px; line-height: 1.8; color: var(--ink); margin-bottom: 25px; max-width: 90%; font-weight: 300; }
-  .invite-text p { margin-bottom: 12px; }
+  .invite-text { font-size: 14px; line-height: 1.7; color: var(--ink); margin-bottom: 15px; max-width: 90%; font-weight: 300; }
+  .invite-text p { margin-bottom: 10px; }
 
-  /* КНОПКИ-МЕТКИ (ГЛАВНАЯ ФИШКА) */
+  /* КНОПКИ (КРУПНЕЕ) */
   .btn {
     display: inline-block;
     background: var(--accent); color: #fff;
-    border: none; padding: 18px 30px; border-radius: 50px;
-    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
-    cursor: pointer; font-family: inherit; font-weight: 500;
-    box-shadow: 0 10px 25px rgba(184, 138, 110, 0.3);
-    width: 100%; max-width: 280px; margin-top: 15px;
+    border: none; 
+    padding: 20px 40px; /* Увеличили размер */
+    border-radius: 50px;
+    font-size: 15px; /* Увеличили шрифт */
+    letter-spacing: .15em; 
+    text-transform: uppercase;
+    cursor: pointer; 
+    font-family: inherit; 
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(184, 138, 110, 0.4);
+    width: 100%; 
+    max-width: 320px; /* Сделали шире */
+    margin-top: 10px;
+    margin-bottom: 10px;
     transition: background 0.3s;
     -webkit-tap-highlight-color: transparent;
     text-align: center;
@@ -123,7 +131,7 @@
   }
 
   /* АНКЕТА */
-  form { width: 100%; max-width: 320px; text-align: left; margin-top: 15px; }
+  form { width: 100%; max-width: 320px; text-align: left; margin-top: 10px; }
   input, select, textarea {
     width: 100%; padding: 16px; margin-bottom: 12px;
     border: 1px solid rgba(184, 138, 110, 0.2); border-radius: 12px;
@@ -160,7 +168,7 @@
 </head>
 <body>
 
-<!-- РАДИО-КНОПКИ ДЛЯ ПЕРЕКЛЮЧЕНИЯ (НЕВИДИМЫЕ) -->
+<!-- РАДИО-КНОПКИ -->
 <input type="radio" name="slides" id="slide1" checked>
 <input type="radio" name="slides" id="slide2">
 <input type="radio" name="slides" id="slide3">
@@ -184,7 +192,6 @@
       <p>Мы приглашаем вас разделить с нами самое сокровенное — радость создания нашей семьи. Будем счастливы видеть вас на нашем празднике!</p>
     </div>
 
-    <!-- Кнопка "Далее" - это label для радио-кнопки -->
     <label for="slide2" class="btn">Далее</label>
   </div>
 
@@ -215,8 +222,8 @@
     </div>
 
     <div style="display: flex; gap: 10px; width: 100%; max-width: 340px; justify-content: space-between;">
-      <label for="slide1" class="btn btn-outline" style="flex: 1;">Назад</label>
-      <label for="slide3" class="btn" style="flex: 2;">Подтвердить</label>
+      <label for="slide1" class="btn btn-outline" style="flex: 1; max-width: 100px; padding: 20px 10px;">Назад</label>
+      <label for="slide3" class="btn" style="flex: 2; max-width: 200px;">Подтвердить</label>
     </div>
   </div>
 
@@ -235,7 +242,7 @@
       </select>
       <textarea id="msg" rows="2" placeholder="Пожелания (необязательно)"></textarea>
       
-      <button type="submit" class="btn" id="submitBtn" style="max-width: 100%; margin-top: 5px;">Отправить</button>
+      <button type="submit" class="btn" id="submitBtn" style="max-width: 100%; margin-top: 10px;">Отправить</button>
     </form>
     
     <label for="slide2" class="btn btn-outline" style="max-width: 200px; margin-top: 15px;">← Назад</label>
@@ -297,7 +304,6 @@
       const data = await res.json();
       
       if (data && data.ok) {
-        // Переключаем на экран "Спасибо" через радио-кнопку
         document.getElementById('slide4').checked = true;
       } else {
         alert('Ошибка. Попробуйте еще раз.');

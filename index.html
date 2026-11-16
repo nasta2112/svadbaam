@@ -11,15 +11,14 @@
     --card:#fffaf8; --border:#ecd9de; --input-border:#e3cdd3;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  /* Убрали overflow:hidden с body, чтобы на телефонах не было багов с прокруткой */
-  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;height:100%;}
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;height:100vh;overflow:hidden}
   h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600}
 
-  /* КОНТЕЙНЕР ЭКРАНОВ */
+  /* КОНТЕЙНЕР */
   .app-container {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Изменили на min-height */
+    height: 100vh;
     overflow: hidden;
     max-width: 600px;
     margin: 0 auto;
@@ -30,87 +29,84 @@
   /* ЭКРАНЫ */
   .screen {
     position: absolute;
-    top: 0; left: 0; width: 100%; min-height: 100%; /* Изменили на min-height */
-    display: flex;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; /* Показываем по умолчанию */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 30px 24px;
-    transition: transform 0.4s ease, opacity 0.3s ease;
+    padding: 20px 15px;
     background: var(--bg);
-    z-index: 1;
+    z-index: 2;
     overflow-y: auto;
   }
   
-  /* Скрытие экранов */
+  /* Скрываем неактивные экраны */
   .screen.hidden {
-    transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
+    display: none !important;
   }
 
   /* ЭЛЕМЕНТЫ */
-  .label{letter-spacing:.35em;text-transform:uppercase;font-size:11px;color:var(--accent2);margin-bottom:10px;display:block}
-  .date{font-size:18px;letter-spacing:.2em;color:var(--accent2);margin-top:10px;margin-bottom:25px}
+  .label{letter-spacing:.35em;text-transform:uppercase;font-size:10px;color:var(--accent2);margin-bottom:5px;display:block}
+  .date{font-size:16px;letter-spacing:.2em;color:var(--accent2);margin-top:5px;margin-bottom:15px}
   
   /* ФОТО В РЯД */
   .photos {
     display: flex;
     gap: 8px;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
   }
   .photos img {
     width: 48%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 3px solid #fff;
-    box-shadow: 0 8px 20px rgba(192,138,155,.2);
+    box-shadow: 0 4px 10px rgba(192,138,155,.2);
   }
 
   .invite-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; /* Чуть уменьшили для мобильных */
-    line-height: 1.5;
+    font-size: 20px;
+    line-height: 1.4;
     font-style: italic;
     color: var(--accent2);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-weight: 500;
     max-width: 95%;
   }
-  .invite-text p { margin-bottom: 15px; }
+  .invite-text p { margin-bottom: 8px; }
 
-  /* КНОПКИ (Сделали крупнее для пальцев) */
+  /* КНОПКИ */
   .btn {
     background: var(--accent);
     color: #fff;
     border: none;
-    padding: 18px 40px;
+    padding: 14px 30px;
     border-radius: 30px;
-    font-size: 16px; /* Крупнее */
-    letter-spacing: .15em;
+    font-size: 14px;
+    letter-spacing: .1em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.2s;
     font-family: inherit;
-    box-shadow: 0 4px 15px rgba(192,138,155,0.4);
-    width: 100%; /* Кнопка на всю ширину на телефоне */
-    max-width: 300px;
+    box-shadow: 0 4px 10px rgba(192,138,155,0.4);
+    width: 100%;
+    max-width: 280px;
     margin-top: 10px;
+    -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку при нажатии на iPhone */
   }
   .btn:active { background: var(--accent2); }
-  .btn:disabled { opacity: 0.6; cursor: wait; }
+  .btn:disabled { opacity: 0.6; }
 
   /* АНКЕТА */
-  form { width: 100%; max-width: 350px; text-align: left; margin-top: 10px; }
+  form { width: 100%; max-width: 320px; text-align: left; margin-top: 10px; }
   input, select, textarea {
-    width: 100%; padding: 16px; margin-bottom: 12px;
-    border: 1px solid var(--input-border); border-radius: 10px;
-    font-family: inherit; font-size: 16px; background: var(--card); color: var(--ink);
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    border: 1px solid var(--input-border); border-radius: 8px;
+    font-family: inherit; font-size: 14px; background: var(--card); color: var(--ink);
   }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
 
@@ -118,32 +114,30 @@
   .details-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 25px 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(192,138,155,.1);
+    border-radius: 12px;
+    padding: 20px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(192,138,155,.1);
     width: 100%;
-    max-width: 400px;
-    text-align: center;
+    max-width: 350px;
   }
-  .details-card h3 { font-size: 26px; margin-bottom: 5px; color: var(--ink); }
-  .details-card p { font-size: 15px; color: var(--muted); margin-bottom: 10px; }
+  .details-card h3 { font-size: 22px; margin-bottom: 5px; color: var(--ink); }
+  .details-card p { font-size: 14px; color: var(--muted); margin-bottom: 5px; }
   
   .dress-code {
     background: rgba(192,138,155,0.08);
-    padding: 15px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 8px;
     border-left: 3px solid var(--accent);
     text-align: left;
-    font-size: 14px;
-    margin-top: 15px;
-    line-height: 1.5;
+    font-size: 13px;
+    margin-top: 10px;
+    line-height: 1.4;
   }
-  .dress-code strong { color: var(--accent2); display: block; margin-bottom: 5px; }
+  .dress-code strong { color: var(--accent2); display: block; margin-bottom: 3px; }
 
-  /* СТИЛИ ДЛЯ 4 ЭКРАНА */
-  .heart { font-size: 50px; color: var(--accent); margin-bottom: 15px; animation: pulse 1.5s infinite; }
-  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+  /* ФИНАЛ */
+  .heart { font-size: 40px; color: var(--accent); margin-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -153,7 +147,7 @@
   <!-- ЭКРАН 1 -->
   <div class="screen" id="screen1">
     <span class="label">Приглашение на свадьбу</span>
-    <h1 class="serif" style="font-size: 38px; line-height: 1.1; margin-bottom: 5px;">Анастасия <span style="color:var(--accent)">&</span> Максим</h1>
+    <h1 class="serif" style="font-size: 34px; line-height: 1.1; margin-bottom: 5px;">Анастасия <span style="color:var(--accent)">&</span> Максим</h1>
     <p class="date">23 ЯНВАРЯ 2027</p>
     
     <div class="photos">
@@ -163,42 +157,39 @@
 
     <div class="invite-text">
       <p>Дорогие друзья и близкие!</p>
-      <p>В этот прекрасный день мы хотим разделить с вами самое сокровенное — радость создания нашей семьи. Приглашаем вас стать частью нашего торжества, разделить с нами смех, счастливые улыбки и тёплые объятия.</p>
-      <p>Пусть этот день станет красивым началом нашей общей истории. Будем счастливы видеть вас!</p>
+      <p>Мы приглашаем вас разделить с нами самое сокровенное — радость создания нашей семьи. Будем счастливы видеть вас на нашем празднике!</p>
     </div>
 
-    <!-- Добавили type="button" и onclick -->
-    <button type="button" class="btn" onclick="nextScreen(1, 2)">Далее</button>
+    <button type="button" class="btn" onclick="goTo(2)">Далее</button>
   </div>
 
   <!-- ЭКРАН 2 -->
   <div class="screen hidden" id="screen2">
     <span class="label">Детали</span>
-    <h2 class="serif" style="font-size: 30px; margin-bottom: 15px;">Когда и где?</h2>
+    <h2 class="serif" style="font-size: 26px; margin-bottom: 10px;">Когда и где?</h2>
     
     <div class="details-card">
       <h3 class="serif">Ресторан «Дежавю»</h3>
       <p>г. Ульяновск, Омская улица, 4</p>
-      <p style="font-size: 14px; color: var(--accent2); margin-bottom: 15px;">Сбор гостей в 16:00</p>
+      <p style="color: var(--accent2); margin-bottom: 10px;">Сбор гостей в 16:00</p>
       
       <div class="dress-code">
         <strong>Дресс-код</strong>
-        Строгих правил и дресс-кода нет! Нам будет очень приятно, если вы выберете для себя красивый и удобный наряд, в котором вам будет комфортно разделить с нами этот тёплый и счастливый вечер. А главное — обязательно возьмите с собой улыбки, смех и отличное настроение!
+        Строгих правил нет! Нам будет приятно, если вы выберете удобный и красивый наряд. Главное — возьмите с собой улыбки и отличное настроение!
       </div>
     </div>
 
-    <div style="display: flex; gap: 10px; width: 100%; max-width: 400px; justify-content: space-between;">
-      <button type="button" class="btn" style="background: var(--muted); box-shadow: none; flex: 1;" onclick="nextScreen(2, 1)">Назад</button>
-      <button type="button" class="btn" style="flex: 2;" onclick="nextScreen(2, 3)">Подтвердить</button>
+    <div style="display: flex; gap: 10px; width: 100%; max-width: 350px; justify-content: space-between;">
+      <button type="button" class="btn" style="background: var(--muted); box-shadow: none; flex: 1;" onclick="goTo(1)">Назад</button>
+      <button type="button" class="btn" style="flex: 2;" onclick="goTo(3)">Подтвердить</button>
     </div>
   </div>
 
   <!-- ЭКРАН 3 -->
   <div class="screen hidden" id="screen3">
     <span class="label">Анкета гостя</span>
-    <h2 class="serif" style="font-size: 30px; margin-bottom: 5px;">Вы придёте?</h2>
-    <p style="font-size: 14px; color: var(--muted); margin-bottom: 15px;">Пожалуйста, ответьте до 23 декабря</p>
-
+    <h2 class="serif" style="font-size: 26px; margin-bottom: 5px;">Вы придёте?</h2>
+    
     <form onsubmit="return sendRSVP(event)">
       <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
       <select id="attend" required>
@@ -206,36 +197,36 @@
         <option>Да, с удовольствием!</option>
         <option>К сожалению, не смогу</option>
       </select>
-      <textarea id="msg" rows="2" placeholder="Ваши пожелания (необязательно)"></textarea>
+      <textarea id="msg" rows="2" placeholder="Пожелания (необязательно)"></textarea>
       
       <button type="submit" class="btn" id="submitBtn" style="max-width: 100%;">Отправить</button>
     </form>
     
-    <button type="button" class="btn" style="background: transparent; color: var(--muted); box-shadow: none; margin-top: 15px; font-size: 14px;" onclick="nextScreen(3, 2)">← Назад</button>
+    <button type="button" class="btn" style="background: transparent; color: var(--muted); box-shadow: none; margin-top: 10px;" onclick="goTo(2)">← Назад</button>
   </div>
 
   <!-- ЭКРАН 4 -->
   <div class="screen hidden" id="screen4">
     <div class="heart">🤍</div>
-    <h2 class="serif" style="font-size: 34px; margin-bottom: 15px;">Спасибо!</h2>
-    <p style="font-size: 18px; color: var(--accent2); max-width: 300px; margin-bottom: 20px;">Ваш ответ получен. Мы очень ждём встречи с вами и разделим этот счастливый день вместе!</p>
-    <p style="font-size: 14px; color: var(--muted);">С любовью, Анастасия и Максим</p>
+    <h2 class="serif" style="font-size: 28px; margin-bottom: 10px;">Спасибо!</h2>
+    <p style="font-size: 16px; color: var(--accent2); max-width: 300px;">Ваш ответ получен. Мы очень ждём встречи с вами!</p>
   </div>
 
 </div>
 
 <script>
-  // Логика переключения
-  function nextScreen(currentId, nextId) {
-    var current = document.getElementById('screen' + currentId);
-    var next = document.getElementById('screen' + nextId);
-    
-    if (current && next) {
-      current.classList.add('hidden');
-      next.classList.remove('hidden');
-      
-      // Сбрасываем прокрутку наверх при переходе
-      next.scrollTop = 0; 
+  // Железобетонная функция переключения
+  function goTo(screenNumber) {
+    // Прячем все экраны
+    var screens = document.querySelectorAll('.screen');
+    for (var i = 0; i < screens.length; i++) {
+      screens[i].classList.add('hidden');
+    }
+    // Показываем нужный
+    var target = document.getElementById('screen' + screenNumber);
+    if (target) {
+      target.classList.remove('hidden');
+      target.scrollTop = 0;
     }
   }
 
@@ -250,13 +241,10 @@
     const msg = document.getElementById('msg').value.trim();
     const btn = document.getElementById('submitBtn');
 
-    const text = `💌 Свадьба Анастасии и Максима\n` +
-                 `👤 Имя: ${name}\n` +
-                 `✅ Присутствие: ${attend}\n` +
-                 `💬 Пожелания: ${msg || '—'}`;
+    const text = `💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`;
 
     btn.disabled = true;
-    btn.textContent = 'Отправляем...';
+    btn.textContent = 'Отправка...';
 
     try {
       const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -267,14 +255,14 @@
       const data = await res.json();
       
       if (data && data.ok) {
-        nextScreen(3, 4); // Переходим на экран Спасибо
+        goTo(4); // Если успех, открываем экран Спасибо
       } else {
-        alert('Ошибка отправки. Попробуйте еще раз.');
+        alert('Ошибка. Попробуйте еще раз.');
         btn.disabled = false;
         btn.textContent = 'Отправить';
       }
     } catch (err) {
-      alert('Ошибка сети. Проверьте интернет.');
+      alert('Ошибка сети.');
       btn.disabled = false;
       btn.textContent = 'Отправить';
     }

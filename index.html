@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Анастасия & Максим — Приглашение</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -11,14 +11,15 @@
     --card:#fffaf8; --border:#ecd9de; --input-border:#e3cdd3;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow:hidden;height:100vh}
+  /* Убрали overflow:hidden с body, чтобы на телефонах не было багов с прокруткой */
+  body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;height:100%;}
   h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600}
 
   /* КОНТЕЙНЕР ЭКРАНОВ */
   .app-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh; /* Изменили на min-height */
     overflow: hidden;
     max-width: 600px;
     margin: 0 auto;
@@ -29,14 +30,14 @@
   /* ЭКРАНЫ */
   .screen {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; left: 0; width: 100%; min-height: 100%; /* Изменили на min-height */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 30px 24px;
-    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+    transition: transform 0.4s ease, opacity 0.3s ease;
     background: var(--bg);
     z-index: 1;
     overflow-y: auto;
@@ -53,19 +54,17 @@
   .label{letter-spacing:.35em;text-transform:uppercase;font-size:11px;color:var(--accent2);margin-bottom:10px;display:block}
   .date{font-size:18px;letter-spacing:.2em;color:var(--accent2);margin-top:10px;margin-bottom:25px}
   
-  /* ФОТО В РЯД (ТЕПЕРЬ ДВА ПО ЦЕНТРУ) */
+  /* ФОТО В РЯД */
   .photos {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     justify-content: center;
     margin-bottom: 25px;
     width: 100%;
-    max-width: 400px; /* Ограничили ширину, чтобы два фото смотрелись аккуратно */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 400px;
   }
   .photos img {
-    width: 48%; /* Каждое фото занимает почти половину от 400px */
+    width: 48%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 12px;
@@ -75,7 +74,7 @@
 
   .invite-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 23px;
+    font-size: 22px; /* Чуть уменьшили для мобильных */
     line-height: 1.5;
     font-style: italic;
     color: var(--accent2);
@@ -85,34 +84,37 @@
   }
   .invite-text p { margin-bottom: 15px; }
 
-  /* КНОПКИ */
+  /* КНОПКИ (Сделали крупнее для пальцев) */
   .btn {
     background: var(--accent);
     color: #fff;
     border: none;
-    padding: 16px 40px;
+    padding: 18px 40px;
     border-radius: 30px;
-    font-size: 14px;
+    font-size: 16px; /* Крупнее */
     letter-spacing: .15em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.2s;
     font-family: inherit;
     box-shadow: 0 4px 15px rgba(192,138,155,0.4);
+    width: 100%; /* Кнопка на всю ширину на телефоне */
+    max-width: 300px;
+    margin-top: 10px;
   }
-  .btn:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn:active { background: var(--accent2); }
   .btn:disabled { opacity: 0.6; cursor: wait; }
 
   /* АНКЕТА */
-  form { width: 100%; max-width: 350px; text-align: left; margin-top: 20px; }
+  form { width: 100%; max-width: 350px; text-align: left; margin-top: 10px; }
   input, select, textarea {
-    width: 100%; padding: 14px 16px; margin-bottom: 12px;
+    width: 100%; padding: 16px; margin-bottom: 12px;
     border: 1px solid var(--input-border); border-radius: 10px;
-    font-family: inherit; font-size: 15px; background: var(--card); color: var(--ink);
+    font-family: inherit; font-size: 16px; background: var(--card); color: var(--ink);
   }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
 
-  /* СТИЛИ ДЛЯ 2 ЭКРАНА (ДЕТАЛИ) */
+  /* ДЕТАЛИ */
   .details-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -122,6 +124,7 @@
     box-shadow: 0 10px 30px rgba(192,138,155,.1);
     width: 100%;
     max-width: 400px;
+    text-align: center;
   }
   .details-card h3 { font-size: 26px; margin-bottom: 5px; color: var(--ink); }
   .details-card p { font-size: 15px; color: var(--muted); margin-bottom: 10px; }
@@ -147,14 +150,13 @@
 
 <div class="app-container">
   
-  <!-- ЭКРАН 1: ПРИВЕТСТВИЕ -->
+  <!-- ЭКРАН 1 -->
   <div class="screen" id="screen1">
     <span class="label">Приглашение на свадьбу</span>
-    <h1 class="serif" style="font-size: 40px; line-height: 1.1; margin-bottom: 5px;">Анастасия <span style="color:var(--accent)">&</span> Максим</h1>
+    <h1 class="serif" style="font-size: 38px; line-height: 1.1; margin-bottom: 5px;">Анастасия <span style="color:var(--accent)">&</span> Максим</h1>
     <p class="date">23 ЯНВАРЯ 2027</p>
     
     <div class="photos">
-      <!-- Оставлены только два первых фото -->
       <img src="https://e.radikal.host/2026/11/16/3b98b6ea5bd3e94d1.jpg" alt="Фото 1">
       <img src="https://e.radikal.host/2026/11/16/2fa01d6dfd94686bf.jpg" alt="Фото 2">
     </div>
@@ -165,10 +167,11 @@
       <p>Пусть этот день станет красивым началом нашей общей истории. Будем счастливы видеть вас!</p>
     </div>
 
-    <button class="btn" onclick="nextScreen(1, 2)">Далее</button>
+    <!-- Добавили type="button" и onclick -->
+    <button type="button" class="btn" onclick="nextScreen(1, 2)">Далее</button>
   </div>
 
-  <!-- ЭКРАН 2: МЕСТО И ДРЕСС-КОД -->
+  <!-- ЭКРАН 2 -->
   <div class="screen hidden" id="screen2">
     <span class="label">Детали</span>
     <h2 class="serif" style="font-size: 30px; margin-bottom: 15px;">Когда и где?</h2>
@@ -184,13 +187,13 @@
       </div>
     </div>
 
-    <div style="display: flex; gap: 10px; margin-top: 10px; width: 100%; max-width: 400px; justify-content: space-between;">
-      <button class="btn" style="background: var(--muted); box-shadow: none; flex: 1;" onclick="nextScreen(2, 1)">Назад</button>
-      <button class="btn" style="flex: 2;" onclick="nextScreen(2, 3)">Подтвердить</button>
+    <div style="display: flex; gap: 10px; width: 100%; max-width: 400px; justify-content: space-between;">
+      <button type="button" class="btn" style="background: var(--muted); box-shadow: none; flex: 1;" onclick="nextScreen(2, 1)">Назад</button>
+      <button type="button" class="btn" style="flex: 2;" onclick="nextScreen(2, 3)">Подтвердить</button>
     </div>
   </div>
 
-  <!-- ЭКРАН 3: АНКЕТА -->
+  <!-- ЭКРАН 3 -->
   <div class="screen hidden" id="screen3">
     <span class="label">Анкета гостя</span>
     <h2 class="serif" style="font-size: 30px; margin-bottom: 5px;">Вы придёте?</h2>
@@ -205,13 +208,13 @@
       </select>
       <textarea id="msg" rows="2" placeholder="Ваши пожелания (необязательно)"></textarea>
       
-      <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Отправить</button>
+      <button type="submit" class="btn" id="submitBtn" style="max-width: 100%;">Отправить</button>
     </form>
     
-    <button class="btn" style="background: transparent; color: var(--muted); box-shadow: none; margin-top: 15px; padding: 5px;" onclick="nextScreen(3, 2)">← Назад</button>
+    <button type="button" class="btn" style="background: transparent; color: var(--muted); box-shadow: none; margin-top: 15px; font-size: 14px;" onclick="nextScreen(3, 2)">← Назад</button>
   </div>
 
-  <!-- ЭКРАН 4: СПАСИБО -->
+  <!-- ЭКРАН 4 -->
   <div class="screen hidden" id="screen4">
     <div class="heart">🤍</div>
     <h2 class="serif" style="font-size: 34px; margin-bottom: 15px;">Спасибо!</h2>
@@ -222,13 +225,21 @@
 </div>
 
 <script>
-  // === ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ ===
+  // Логика переключения
   function nextScreen(currentId, nextId) {
-    document.getElementById('screen' + currentId).classList.add('hidden');
-    document.getElementById('screen' + nextId).classList.remove('hidden');
+    var current = document.getElementById('screen' + currentId);
+    var next = document.getElementById('screen' + nextId);
+    
+    if (current && next) {
+      current.classList.add('hidden');
+      next.classList.remove('hidden');
+      
+      // Сбрасываем прокрутку наверх при переходе
+      next.scrollTop = 0; 
+    }
   }
 
-  // === ОТПРАВКА В TELEGRAM ===
+  // Отправка в Telegram
   const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
   const CHAT_ID = '-1004337417866';
 
@@ -256,8 +267,7 @@
       const data = await res.json();
       
       if (data && data.ok) {
-        document.getElementById('screen3').classList.add('hidden');
-        document.getElementById('screen4').classList.remove('hidden');
+        nextScreen(3, 4); // Переходим на экран Спасибо
       } else {
         alert('Ошибка отправки. Попробуйте еще раз.');
         btn.disabled = false;

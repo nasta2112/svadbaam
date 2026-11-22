@@ -6,16 +6,16 @@
 <title>Анастасия & Максим — Приглашение</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #1c1c1e; /* Глубокий графит */
-    --card-bg: #2a2a2d;
-    --ink: #f5f5f5;
-    --gold: #c9a96e; /* Матовое золото */
-    --gold-hover: #b08d55;
-    --muted: #888888;
-    --border: #3a3a3d;
+    --bg: #fdfbfa; /* Очень светлый, теплый фон */
+    --card-bg: #ffffff;
+    --ink: #3e3a36;
+    --accent: #d4a3a8; /* Нежный пыльно-розовый */
+    --accent-dark: #b87c81;
+    --muted: #9e938d;
+    --line: #f0e8e4;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,6 +38,10 @@
     margin: 0 auto;
     overflow-y: auto;
     background-color: var(--bg);
+    /* Мягкие цветовые пятна на фоне */
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(212, 163, 168, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(212, 163, 168, 0.08) 0%, transparent 50%);
   }
 
   .screen {
@@ -53,24 +57,24 @@
   .screen.active { display: flex; }
 
   /* ТИПОГРАФИКА */
-  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
   
   .names-title {
-    font-size: 58px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 56px;
     line-height: 1.1;
     color: var(--ink);
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    margin: 10px 0 5px;
   }
-  .names-title span { color: var(--gold); font-size: 40px; vertical-align: middle; font-style: italic; }
+  .names-title span { color: var(--accent-dark); font-size: 38px; vertical-align: middle; }
   
   .label { 
     text-transform: uppercase; 
     font-size: 10px; 
-    letter-spacing: 5px; 
-    color: var(--gold); 
-    margin-bottom: 15px; 
-    font-weight: 500;
+    letter-spacing: 4px; 
+    color: var(--accent-dark); 
+    margin-bottom: 10px; 
+    font-weight: 600;
     display: block;
   }
   
@@ -85,25 +89,25 @@
   /* ФОТО */
   .photos { 
     display: flex; 
-    gap: 15px; 
+    gap: 12px; 
     justify-content: center; 
-    margin-bottom: 30px; 
+    margin-bottom: 25px; 
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
   }
   .photos img {
     width: 48%; 
     aspect-ratio: 3 / 4; 
     object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 12px;
+    border: 3px solid #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   }
 
   .text-block { 
     font-size: 15px; 
     margin-bottom: 30px; 
-    color: #cccccc;
+    color: #5a5550;
     font-weight: 300;
     max-width: 90%;
   }
@@ -114,55 +118,57 @@
     display: block; 
     width: 100%; 
     max-width: 280px;
-    padding: 18px; 
-    background-color: var(--gold); 
-    color: #1c1c1e;
+    padding: 16px; 
+    background-color: var(--accent); 
+    color: #fff;
     border: none; 
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600; 
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500; 
     text-transform: uppercase; 
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-align: center; 
     cursor: pointer; 
     margin-top: 15px;
+    box-shadow: 0 8px 20px rgba(212, 163, 168, 0.3);
     transition: background 0.3s;
   }
-  .btn:active { background-color: var(--gold-hover); }
+  .btn:active { background-color: var(--accent-dark); }
   .btn-outline { 
     background-color: transparent; 
-    color: var(--muted); 
-    border: 1px solid var(--border); 
+    color: var(--accent-dark); 
+    border: 1px solid var(--accent); 
+    box-shadow: none;
   }
-  .btn-outline:active { background-color: rgba(255,255,255,0.05); }
+  .btn-outline:active { background-color: rgba(212, 163, 168, 0.1); }
 
   /* КАРТОЧКИ */
   .card {
     background-color: var(--card-bg); 
-    border-radius: 8px; 
-    padding: 40px 30px;
+    border-radius: 20px; 
+    padding: 35px 25px;
     width: 100%; 
     max-width: 340px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.04); 
     margin-bottom: 20px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
   }
 
-  .card h3 { font-size: 28px; margin-bottom: 5px; color: var(--ink); }
+  .card h3 { font-size: 26px; margin-bottom: 5px; color: var(--ink); }
   .card p { font-size: 14px; color: var(--muted); }
   
   .dress-code {
-    background-color: rgba(201, 169, 110, 0.05); 
+    background-color: #fbf7f6; 
     padding: 20px; 
-    border-radius: 4px;
+    border-radius: 12px;
     text-align: left; 
     font-size: 13px; 
-    margin-top: 25px;
-    border-left: 2px solid var(--gold);
-    color: #b0b0b0;
+    margin-top: 20px;
+    border-left: 3px solid var(--accent);
+    color: #6b6560;
   }
   .dress-code strong { 
-    color: var(--gold); 
+    color: var(--accent-dark); 
     display: block; 
     margin-bottom: 5px; 
     font-size: 11px; 
@@ -175,15 +181,15 @@
     display: flex; 
     justify-content: center; 
     gap: 15px; 
-    margin-top: 30px;
-    border-top: 1px solid var(--border);
-    padding-top: 25px;
+    margin-top: 25px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
   }
   .timer div { text-align: center; }
   .timer b { 
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 34px; 
-    color: var(--gold); 
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; 
+    color: var(--accent-dark); 
     display: block; 
     line-height: 1;
     margin-bottom: 5px;
@@ -193,24 +199,24 @@
   /* ФОРМА */
   input, select, textarea {
     width: 100%; 
-    padding: 16px; 
-    margin-bottom: 15px;
-    border: 1px solid var(--border); 
-    border-radius: 4px;
+    padding: 15px; 
+    margin-bottom: 12px;
+    border: 1px solid var(--line); 
+    border-radius: 10px;
     font-family: 'Montserrat', sans-serif; 
     font-size: 14px;
-    background-color: #1c1c1e;
+    background-color: #faf8f7;
     color: var(--ink);
-    transition: border 0.3s;
+    transition: border 0.3s, background 0.3s;
   }
   input:focus, select:focus, textarea:focus { 
     outline: none; 
-    border-color: var(--gold); 
-    background-color: #232326;
+    border-color: var(--accent); 
+    background-color: #fff;
   }
 
   .radio { display: none; }
-  .heart { font-size: 50px; color: var(--gold); margin-bottom: 20px; }
+  .heart { font-size: 50px; color: var(--accent-dark); margin-bottom: 20px; }
 </style>
 </head>
 <body>
@@ -248,7 +254,7 @@
     <div class="card">
       <h3>Ресторан «Дежавю»</h3>
       <p>г. Ульяновск, Омская улица, 4</p>
-      <p style="color: var(--gold); margin-top: 10px; font-weight: 500; font-size: 15px;">Сбор гостей в 16:00</p>
+      <p style="color: var(--accent-dark); margin-top: 10px; font-weight: 500; font-size: 15px;">Сбор гостей в 16:00</p>
 
       <div class="dress-code">
         <strong>Дресс-код</strong>
@@ -277,7 +283,6 @@
       <h3 style="margin-bottom: 5px;">Вы придёте?</h3>
       <p style="margin-bottom: 20px;">Пожалуйста, ответьте до 23 декабря</p>
       
-      <!-- Теперь форма не отправляет запрос, а открывает Telegram -->
       <form onsubmit="return openTelegram(event)">
         <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
         <select id="attend" required>
@@ -355,19 +360,14 @@
     const msg = document.getElementById('msg').value.trim();
     const btn = document.getElementById('subBtn');
 
-    // Формируем текст для сообщения
     const text = `💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`;
-    
-    // Кодируем текст для передачи в URL
     const encodedText = encodeURIComponent(text);
     
-    // Ссылка на вашего бота (откроется чат с введенным текстом)
+    // Открываем Telegram с готовым текстом
     const tgLink = `https://t.me/${TG_USERNAME}?start=${encodedText}`;
-
-    // Открываем Telegram
     window.open(tgLink, '_blank');
 
-    // Показываем экран "Спасибо"
+    // Меняем кнопку и переключаем экран
     btn.textContent = 'Открываем Telegram...';
     setTimeout(() => {
       s4.checked = true;

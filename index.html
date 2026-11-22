@@ -6,16 +6,16 @@
 <title>Анастасия & Максим — Приглашение</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fcf9f7; /* Светлый фон, как акварельная бумага */
-    --ink: #3b3b3b;
-    --accent: #a8c3b8; /* Нежный шалфейный */
-    --accent-dark: #7a9e92;
-    --muted: #9e9e9e;
-    --card-bg: #ffffff;
-    --shadow: 0 20px 40px rgba(168, 195, 184, 0.15);
+    --bg: #1c1c1e; /* Глубокий графит */
+    --card-bg: #2a2a2d;
+    --ink: #f5f5f5;
+    --gold: #c9a96e; /* Матовое золото */
+    --gold-hover: #b08d55;
+    --muted: #888888;
+    --border: #3a3a3d;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,10 +38,6 @@
     margin: 0 auto;
     overflow-y: auto;
     background-color: var(--bg);
-    /* Нежный акварельный градиент */
-    background-image: 
-      radial-gradient(circle at 10% 20%, rgba(168, 195, 184, 0.15) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(200, 170, 160, 0.15) 0%, transparent 40%);
   }
 
   .screen {
@@ -57,22 +53,22 @@
   .screen.active { display: flex; }
 
   /* ТИПОГРАФИКА */
-  h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
   
   .names-title {
-    font-size: 56px;
+    font-size: 58px;
     line-height: 1.1;
     color: var(--ink);
-    margin-bottom: 15px;
-    font-style: italic;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
   }
-  .names-title span { color: var(--accent-dark); font-size: 36px; vertical-align: middle; font-style: normal; }
+  .names-title span { color: var(--gold); font-size: 40px; vertical-align: middle; font-style: italic; }
   
   .label { 
     text-transform: uppercase; 
     font-size: 10px; 
     letter-spacing: 5px; 
-    color: var(--accent-dark); 
+    color: var(--gold); 
     margin-bottom: 15px; 
     font-weight: 500;
     display: block;
@@ -80,7 +76,7 @@
   
   .date { 
     font-size: 14px; 
-    letter-spacing: 2px; 
+    letter-spacing: 3px; 
     color: var(--muted); 
     margin-bottom: 30px; 
     text-transform: uppercase;
@@ -89,7 +85,7 @@
   /* ФОТО */
   .photos { 
     display: flex; 
-    gap: 12px; 
+    gap: 15px; 
     justify-content: center; 
     margin-bottom: 30px; 
     width: 100%;
@@ -99,15 +95,15 @@
     width: 48%; 
     aspect-ratio: 3 / 4; 
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    border: 4px solid #fff; /* Белая рамка вокруг фото */
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
 
   .text-block { 
     font-size: 15px; 
     margin-bottom: 30px; 
-    color: #555;
+    color: #cccccc;
     font-weight: 300;
     max-width: 90%;
   }
@@ -119,55 +115,54 @@
     width: 100%; 
     max-width: 280px;
     padding: 18px; 
-    background-color: var(--accent-dark); 
-    color: #fff;
+    background-color: var(--gold); 
+    color: #1c1c1e;
     border: none; 
-    border-radius: 30px;
+    border-radius: 4px;
     font-size: 12px;
-    font-weight: 500; 
+    font-weight: 600; 
     text-transform: uppercase; 
     letter-spacing: 2px;
     text-align: center; 
     cursor: pointer; 
     margin-top: 15px;
-    box-shadow: 0 8px 20px rgba(122, 158, 146, 0.3);
     transition: background 0.3s;
   }
-  .btn:active { background-color: #658578; }
+  .btn:active { background-color: var(--gold-hover); }
   .btn-outline { 
     background-color: transparent; 
-    color: var(--accent-dark); 
-    border: 1px solid var(--accent); 
-    box-shadow: none;
+    color: var(--muted); 
+    border: 1px solid var(--border); 
   }
-  .btn-outline:active { background-color: rgba(168, 195, 184, 0.1); }
+  .btn-outline:active { background-color: rgba(255,255,255,0.05); }
 
   /* КАРТОЧКИ */
   .card {
     background-color: var(--card-bg); 
-    border-radius: 20px; 
+    border-radius: 8px; 
     padding: 40px 30px;
     width: 100%; 
     max-width: 340px;
-    box-shadow: var(--shadow); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
     margin-bottom: 20px;
-    position: relative;
+    border: 1px solid var(--border);
   }
 
   .card h3 { font-size: 28px; margin-bottom: 5px; color: var(--ink); }
   .card p { font-size: 14px; color: var(--muted); }
   
   .dress-code {
-    background-color: #f7f9f8; 
+    background-color: rgba(201, 169, 110, 0.05); 
     padding: 20px; 
-    border-radius: 12px;
+    border-radius: 4px;
     text-align: left; 
     font-size: 13px; 
     margin-top: 25px;
-    border-left: 2px solid var(--accent);
+    border-left: 2px solid var(--gold);
+    color: #b0b0b0;
   }
   .dress-code strong { 
-    color: var(--accent-dark); 
+    color: var(--gold); 
     display: block; 
     margin-bottom: 5px; 
     font-size: 11px; 
@@ -181,14 +176,14 @@
     justify-content: center; 
     gap: 15px; 
     margin-top: 30px;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--border);
     padding-top: 25px;
   }
   .timer div { text-align: center; }
   .timer b { 
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; 
-    color: var(--accent-dark); 
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; 
+    color: var(--gold); 
     display: block; 
     line-height: 1;
     margin-bottom: 5px;
@@ -200,22 +195,22 @@
     width: 100%; 
     padding: 16px; 
     margin-bottom: 15px;
-    border: 1px solid #eee; 
-    border-radius: 12px;
+    border: 1px solid var(--border); 
+    border-radius: 4px;
     font-family: 'Montserrat', sans-serif; 
     font-size: 14px;
-    background-color: #fafafa;
+    background-color: #1c1c1e;
     color: var(--ink);
     transition: border 0.3s;
   }
   input:focus, select:focus, textarea:focus { 
     outline: none; 
-    border-color: var(--accent); 
-    background-color: #fff;
+    border-color: var(--gold); 
+    background-color: #232326;
   }
 
   .radio { display: none; }
-  .heart { font-size: 50px; color: var(--accent-dark); margin-bottom: 20px; }
+  .heart { font-size: 50px; color: var(--gold); margin-bottom: 20px; }
 </style>
 </head>
 <body>
@@ -253,7 +248,7 @@
     <div class="card">
       <h3>Ресторан «Дежавю»</h3>
       <p>г. Ульяновск, Омская улица, 4</p>
-      <p style="color: var(--accent-dark); margin-top: 10px; font-weight: 500; font-size: 15px;">Сбор гостей в 16:00</p>
+      <p style="color: var(--gold); margin-top: 10px; font-weight: 500; font-size: 15px;">Сбор гостей в 16:00</p>
 
       <div class="dress-code">
         <strong>Дресс-код</strong>
@@ -282,7 +277,8 @@
       <h3 style="margin-bottom: 5px;">Вы придёте?</h3>
       <p style="margin-bottom: 20px;">Пожалуйста, ответьте до 23 декабря</p>
       
-      <form onsubmit="return sendForm(event)">
+      <!-- Теперь форма не отправляет запрос, а открывает Telegram -->
+      <form onsubmit="return openTelegram(event)">
         <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
         <select id="attend" required>
           <option value="" disabled selected>Вы придёте?</option>
@@ -291,7 +287,7 @@
         </select>
         <textarea id="msg" rows="2" placeholder="Пожелания (необязательно)"></textarea>
         
-        <button type="submit" class="btn" id="subBtn" style="max-width: 100%; margin-top: 5px;">Отправить</button>
+        <button type="submit" class="btn" id="subBtn" style="max-width: 100%; margin-top: 5px;">Отправить в Telegram</button>
       </form>
     </div>
 
@@ -300,7 +296,7 @@
 
   <!-- ЭКРАН 4 -->
   <div class="screen" id="sc4">
-    <div class="heart">🌿</div>
+    <div class="heart">🤍</div>
     <h2 class="names-title" style="font-size: 48px;">Спасибо!</h2>
     <p class="text-block" style="color: var(--muted);">Ваш ответ получен. Мы очень ждём встречи с вами!</p>
   </div>
@@ -349,29 +345,34 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // ОТПРАВКА ЧЕРЕЗ НЕВИДИМУЮ КАРТИНКУ
-  const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
-  const CHAT_ID = '-1004337417866';
+  // ОТКРЫТИЕ TELEGRAM
+  const TG_USERNAME = 'nastya_maxim_2027_bot'; // Имя вашего бота
 
-  function sendForm(e) {
+  function openTelegram(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const attend = document.getElementById('attend').value;
     const msg = document.getElementById('msg').value.trim();
     const btn = document.getElementById('subBtn');
 
-    const text = encodeURIComponent(`💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`);
+    // Формируем текст для сообщения
+    const text = `💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`;
     
-    const img = document.createElement('img');
-    img.src = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}`;
-    img.style.display = 'none';
-    document.body.appendChild(img);
+    // Кодируем текст для передачи в URL
+    const encodedText = encodeURIComponent(text);
+    
+    // Ссылка на вашего бота (откроется чат с введенным текстом)
+    const tgLink = `https://t.me/${TG_USERNAME}?start=${encodedText}`;
 
-    btn.textContent = 'Отправлено!';
+    // Открываем Telegram
+    window.open(tgLink, '_blank');
+
+    // Показываем экран "Спасибо"
+    btn.textContent = 'Открываем Telegram...';
     setTimeout(() => {
       s4.checked = true;
       updateScreens();
-    }, 500);
+    }, 1000);
     
     return false;
   }

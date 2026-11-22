@@ -50,7 +50,8 @@
     justify-content: center;
     text-align: center;
     min-height: 100%;
-    padding: 40px 24px;
+    /* Увеличили нижний отступ, чтобы кнопка была выше */
+    padding: 40px 24px 80px; 
   }
 
   .screen.active { display: flex; }
@@ -267,7 +268,6 @@
     btn.disabled = true;
     btn.textContent = 'Отправка...';
 
-    // Создаем скрытую форму для отправки (обходим блокировки браузера)
     const iframe = document.createElement('iframe');
     iframe.name = 'hidden_iframe';
     iframe.style.display = 'none';
@@ -294,11 +294,9 @@
     
     form.submit();
 
-    // Мгновенно показываем экран "Спасибо" (запрос уходит в фоне)
     setTimeout(() => {
       s4.checked = true;
       updateScreens();
-      // Очищаем мусор
       setTimeout(() => {
         if (form.parentNode) document.body.removeChild(form);
         if (iframe.parentNode) document.body.removeChild(iframe);

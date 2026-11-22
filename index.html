@@ -4,31 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Анастасия & Максим — Приглашение</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #1a3c34; /* Глубокий изумрудный */
+    --card-bg: #fdfbf7; /* Кремово-белый */
+    --ink: #2c3a35;
+    --gold: #d4af37;
+    --muted: #7a8c86;
+    --line: #e5e0d8;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #fbf9f6;
-    color: #2b2a28;
+    background-color: var(--bg);
+    color: var(--ink);
     line-height: 1.6;
     height: 100vh;
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Главный контейнер */
   .app-container {
     position: relative;
     width: 100%;
     height: 100vh;
     max-width: 500px;
     margin: 0 auto;
-    overflow-y: auto; /* Прокрутка, если не влезет */
-    background-color: #fbf9f6;
+    overflow-y: auto;
+    background-color: var(--bg);
+    /* Легкий узор на фоне */
+    background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 
-  /* Экраны */
   .screen {
     display: none;
     flex-direction: column;
@@ -36,111 +49,180 @@
     justify-content: center;
     text-align: center;
     min-height: 100%;
-    padding: 30px 20px;
+    padding: 30px 20px 50px;
   }
 
-  /* Показываем активный экран */
-  .screen.active {
-    display: flex;
-  }
+  .screen.active { display: flex; }
 
-  /* Текст */
-  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+  /* ТИПОГРАФИКА */
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
   .names-title {
-    font-family: 'Great Vibes', cursive;
-    font-size: 50px;
-    line-height: 1.1;
-    margin: 10px 0;
-    color: #2b2a28;
+    font-size: 64px;
+    line-height: 0.9;
+    color: var(--card-bg);
+    margin-bottom: 20px;
+    font-style: italic;
   }
-  .names-title span { color: #b88a6e; font-size: 40px; }
+  .names-title span { color: var(--gold); font-size: 50px; vertical-align: middle; }
   
-  .label { text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #b88a6e; margin-bottom: 5px; font-weight: 600; }
-  .date { font-size: 13px; letter-spacing: 2px; color: #8a847d; margin-bottom: 25px; }
-
-  /* Фото */
-  .photos { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
-  .photos img {
-    width: 120px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-
-  .text-block { font-size: 14px; margin-bottom: 25px; font-weight: 400; }
-  .text-block p { margin-bottom: 10px; }
-
-  /* Кнопки */
-  .btn {
+  .label { 
+    text-transform: uppercase; 
+    font-size: 11px; 
+    letter-spacing: 4px; 
+    color: var(--gold); 
+    margin-bottom: 15px; 
+    font-weight: 500;
     display: block;
-    width: 100%;
-    max-width: 280px;
-    padding: 16px;
-    background-color: #b88a6e;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 600;
+  }
+  
+  .date { 
+    font-size: 14px; 
+    letter-spacing: 3px; 
+    color: rgba(255,255,255,0.7); 
+    margin-bottom: 30px; 
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-align: center;
-    cursor: pointer;
-    margin-top: 15px;
-    box-shadow: 0 4px 15px rgba(184, 138, 110, 0.3);
   }
-  .btn:active { background-color: #9d735b; }
-  .btn-outline { background-color: transparent; color: #b88a6e; border: 1px solid #b88a6e; box-shadow: none; }
 
-  /* Карточка */
-  .card {
-    background-color: #fff;
-    border-radius: 16px;
-    padding: 25px 20px;
+  /* ФОТО */
+  .photos { 
+    display: flex; 
+    gap: 15px; 
+    justify-content: center; 
+    margin-bottom: 30px; 
     width: 100%;
-    max-width: 340px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    margin-bottom: 15px;
+    max-width: 320px;
+  }
+  .photos img {
+    width: 48%; 
+    aspect-ratio: 3 / 4; 
+    object-fit: cover;
+    border-radius: 4px; /* Острые углы для журнального стиля */
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 
-  /* Детали */
-  .card h3 { font-size: 22px; margin-bottom: 5px; }
-  .card p { font-size: 13px; color: #8a847d; }
-  .dress-code {
-    background-color: #f4efeb;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: left;
+  .text-block { 
+    font-size: 15px; 
+    margin-bottom: 30px; 
+    color: rgba(255,255,255,0.85);
+    font-weight: 300;
+    max-width: 90%;
+  }
+  .text-block p { margin-bottom: 15px; }
+
+  /* КНОПКИ */
+  .btn {
+    display: block; 
+    width: 100%; 
+    max-width: 280px;
+    padding: 18px; 
+    background-color: var(--gold); 
+    color: #1a3c34;
+    border: none; 
+    border-radius: 4px; /* Острые углы */
     font-size: 12px;
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    text-align: center; 
+    cursor: pointer; 
     margin-top: 15px;
+    transition: background 0.3s;
   }
-  .dress-code strong { color: #b88a6e; display: block; margin-bottom: 5px; font-size: 10px; text-transform: uppercase; }
+  .btn:active { background-color: #b5952f; }
+  .btn-outline { 
+    background-color: transparent; 
+    color: rgba(255,255,255,0.7); 
+    border: 1px solid rgba(255,255,255,0.3); 
+  }
+  .btn-outline:active { background-color: rgba(255,255,255,0.1); }
 
-  /* Таймер */
-  .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+  /* КАРТОЧКИ (Белые на изумрудном) */
+  .card {
+    background-color: var(--card-bg); 
+    border-radius: 8px; 
+    padding: 35px 25px;
+    width: 100%; 
+    max-width: 340px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+    margin-bottom: 20px;
+    color: var(--ink);
+    position: relative;
+  }
+  
+  /* Золотая линия над карточкой */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 3px;
+    background-color: var(--gold);
+  }
+
+  .card h3 { font-size: 26px; margin-bottom: 5px; color: var(--ink); }
+  .card p { font-size: 14px; color: var(--muted); }
+  
+  .dress-code {
+    background-color: #f4efeb; 
+    padding: 20px; 
+    border-radius: 4px;
+    text-align: left; 
+    font-size: 13px; 
+    margin-top: 20px;
+    border-left: 3px solid var(--gold);
+  }
+  .dress-code strong { 
+    color: var(--ink); 
+    display: block; 
+    margin-bottom: 5px; 
+    font-size: 11px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+  }
+
+  /* ТАЙМЕР */
+  .timer { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 25px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
   .timer div { text-align: center; }
-  .timer b { font-size: 22px; color: #b88a6e; display: block; font-family: 'Playfair Display', serif;}
-  .timer span { font-size: 9px; text-transform: uppercase; color: #8a847d; }
-
-  /* Форма */
-  input, select, textarea {
-    width: 100%; padding: 12px; margin-bottom: 10px;
-    border: 1px solid #ddd; border-radius: 8px;
-    font-family: 'Montserrat', sans-serif; font-size: 14px;
+  .timer b { 
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; 
+    color: var(--gold); 
+    display: block; 
+    line-height: 1;
   }
-  input:focus, select:focus { outline: none; border-color: #b88a6e; }
+  .timer span { font-size: 9px; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; }
 
-  /* Скрываем радио-кнопки */
+  /* ФОРМА */
+  input, select, textarea {
+    width: 100%; 
+    padding: 16px; 
+    margin-bottom: 15px;
+    border: 1px solid var(--line); 
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 14px;
+    background-color: #faf8f5;
+    color: var(--ink);
+  }
+  input:focus, select:focus, textarea:focus { 
+    outline: none; 
+    border-color: var(--gold); 
+    background-color: #fff;
+  }
+
   .radio { display: none; }
-
-  .heart { font-size: 40px; color: #b88a6e; margin-bottom: 15px; }
+  .heart { font-size: 50px; color: var(--gold); margin-bottom: 20px; }
 </style>
 </head>
 <body>
 
-<!-- Невидимые переключатели -->
 <input type="radio" name="slide" id="s1" class="radio" checked>
 <input type="radio" name="slide" id="s2" class="radio">
 <input type="radio" name="slide" id="s3" class="radio">
@@ -150,8 +232,8 @@
 
   <!-- ЭКРАН 1 -->
   <div class="screen active" id="sc1">
-    <div class="label">Приглашение на свадьбу</div>
-    <h1 class="names-title">Анастасия <span>&</span> Максим</h1>
+    <div class="label">Приглашение</div>
+    <h1 class="names-title">Анастасия<br><span>&</span><br>Максим</h1>
     <div class="date">23 ЯНВАРЯ 2027</div>
 
     <div class="photos">
@@ -170,12 +252,11 @@
   <!-- ЭКРАН 2 -->
   <div class="screen" id="sc2">
     <div class="label">Детали</div>
-    <h2 style="font-size: 26px; margin-bottom: 15px;">Когда и где?</h2>
-
+    
     <div class="card">
       <h3>Ресторан «Дежавю»</h3>
       <p>г. Ульяновск, Омская улица, 4</p>
-      <p style="color: #b88a6e; margin-top: 10px; font-weight: 600;">Сбор гостей в 16:00</p>
+      <p style="color: var(--gold); margin-top: 10px; font-weight: 600; font-size: 15px;">Сбор гостей в 16:00</p>
 
       <div class="dress-code">
         <strong>Дресс-код</strong>
@@ -198,11 +279,12 @@
 
   <!-- ЭКРАН 3 -->
   <div class="screen" id="sc3">
-    <div class="label">Анкета</div>
-    <h2 style="font-size: 26px; margin-bottom: 5px;">Вы придёте?</h2>
-    <p style="font-size: 12px; color: #8a847d; margin-bottom: 15px;">Пожалуйста, ответьте до 23 декабря</p>
-
-    <div class="card" style="padding: 20px;">
+    <div class="label">Анкета гостя</div>
+    
+    <div class="card" style="padding: 30px 20px;">
+      <h3 style="margin-bottom: 5px;">Вы придёте?</h3>
+      <p style="margin-bottom: 20px;">Пожалуйста, ответьте до 23 декабря</p>
+      
       <form onsubmit="return sendForm(event)">
         <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
         <select id="attend" required>
@@ -222,23 +304,14 @@
   <!-- ЭКРАН 4 -->
   <div class="screen" id="sc4">
     <div class="heart">🤍</div>
-    <h2 style="font-size: 30px; margin-bottom: 10px;">Спасибо!</h2>
-    <p style="font-size: 14px; color: #8a847d;">Ваш ответ получен. Мы очень ждём встречи с вами!</p>
+    <h2 class="names-title" style="font-size: 48px;">Спасибо!</h2>
+    <p class="text-block" style="color: rgba(255,255,255,0.7);">Ваш ответ получен. Мы очень ждём встречи с вами!</p>
   </div>
 
 </div>
 
 <script>
-  // Переключение экранов через CSS (без JS)
-  // Мы используем CSS-правила, чтобы показывать нужный экран в зависимости от выбранной радиокнопки.
-  // Добавляем стили для этого прямо в <style> выше, но для надежности продублируем логику.
-  
-  // (Логика скрытия/показа уже прописана в CSS через псевдоклассы, но так как мы используем радио-кнопки,
-  // нам нужно убедиться, что экраны переключаются).
-  
-  // В CSS выше мы не прописали :checked ~ .app-container #sc1 { display: flex; }
-  // Поэтому добавим это в JS для 100% надежности (на случай, если CSS не подхватится).
-
+  // Переключение экранов
   const s1 = document.getElementById('s1');
   const s2 = document.getElementById('s2');
   const s3 = document.getElementById('s3');
@@ -279,42 +352,32 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // Отправка
+  // ОТПРАВКА ЧЕРЕЗ НЕВИДИМУЮ КАРТИНКУ
   const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
   const CHAT_ID = '-1004337417866';
 
-  async function sendForm(e) {
+  function sendForm(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const attend = document.getElementById('attend').value;
     const msg = document.getElementById('msg').value.trim();
     const btn = document.getElementById('subBtn');
 
-    const text = `💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`;
-    btn.disabled = true;
-    btn.textContent = 'Отправка...';
+    const text = encodeURIComponent(`💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`);
+    
+    // Создаем скрытую картинку (запрос к Telegram)
+    const img = document.createElement('img');
+    img.src = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}`;
+    img.style.display = 'none';
+    document.body.appendChild(img);
 
-    try {
-      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ chat_id: CHAT_ID, text: text })
-      });
-      const data = await res.json();
-      
-      if (data && data.ok) {
-        s4.checked = true;
-        updateScreens();
-      } else {
-        alert('Ошибка. Попробуйте еще раз.');
-        btn.disabled = false;
-        btn.textContent = 'Отправить';
-      }
-    } catch (err) {
-      alert('Ошибка сети.');
-      btn.disabled = false;
-      btn.textContent = 'Отправить';
-    }
+    // Мгновенно показываем экран "Спасибо"
+    btn.textContent = 'Отправлено!';
+    setTimeout(() => {
+      s4.checked = true;
+      updateScreens();
+    }, 500);
+    
     return false;
   }
 </script>

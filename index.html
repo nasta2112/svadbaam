@@ -9,10 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fdfbfa; /* Очень светлый, теплый фон */
+    --bg: #fdfbfa;
     --card-bg: #ffffff;
     --ink: #3e3a36;
-    --accent: #d4a3a8; /* Нежный пыльно-розовый */
+    --accent: #d4a3a8;
     --accent-dark: #b87c81;
     --muted: #9e938d;
     --line: #f0e8e4;
@@ -38,7 +38,6 @@
     margin: 0 auto;
     overflow-y: auto;
     background-color: var(--bg);
-    /* Мягкие цветовые пятна на фоне */
     background-image: 
       radial-gradient(circle at 0% 0%, rgba(212, 163, 168, 0.08) 0%, transparent 50%),
       radial-gradient(circle at 100% 100%, rgba(212, 163, 168, 0.08) 0%, transparent 50%);
@@ -56,9 +55,7 @@
 
   .screen.active { display: flex; }
 
-  /* ТИПОГРАФИКА */
   h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
-  
   .names-title {
     font-family: 'Great Vibes', cursive;
     font-size: 56px;
@@ -68,89 +65,36 @@
   }
   .names-title span { color: var(--accent-dark); font-size: 38px; vertical-align: middle; }
   
-  .label { 
-    text-transform: uppercase; 
-    font-size: 10px; 
-    letter-spacing: 4px; 
-    color: var(--accent-dark); 
-    margin-bottom: 10px; 
-    font-weight: 600;
-    display: block;
-  }
-  
-  .date { 
-    font-size: 14px; 
-    letter-spacing: 3px; 
-    color: var(--muted); 
-    margin-bottom: 30px; 
-    text-transform: uppercase;
-  }
+  .label { text-transform: uppercase; font-size: 10px; letter-spacing: 4px; color: var(--accent-dark); margin-bottom: 10px; font-weight: 600; display: block; }
+  .date { font-size: 14px; letter-spacing: 3px; color: var(--muted); margin-bottom: 30px; text-transform: uppercase; }
 
-  /* ФОТО */
-  .photos { 
-    display: flex; 
-    gap: 12px; 
-    justify-content: center; 
-    margin-bottom: 25px; 
-    width: 100%;
-    max-width: 300px;
-  }
+  .photos { display: flex; gap: 12px; justify-content: center; margin-bottom: 25px; width: 100%; max-width: 300px; }
   .photos img {
-    width: 48%; 
-    aspect-ratio: 3 / 4; 
-    object-fit: cover;
-    border-radius: 12px;
-    border: 3px solid #fff;
+    width: 48%; aspect-ratio: 3 / 4; object-fit: cover;
+    border-radius: 12px; border: 3px solid #fff;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   }
 
-  .text-block { 
-    font-size: 15px; 
-    margin-bottom: 30px; 
-    color: #5a5550;
-    font-weight: 300;
-    max-width: 90%;
-  }
+  .text-block { font-size: 15px; margin-bottom: 30px; color: #5a5550; font-weight: 300; max-width: 90%; }
   .text-block p { margin-bottom: 15px; }
 
-  /* КНОПКИ */
   .btn {
-    display: block; 
-    width: 100%; 
-    max-width: 280px;
-    padding: 16px; 
-    background-color: var(--accent); 
-    color: #fff;
-    border: none; 
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 500; 
-    text-transform: uppercase; 
-    letter-spacing: 1.5px;
-    text-align: center; 
-    cursor: pointer; 
-    margin-top: 15px;
+    display: block; width: 100%; max-width: 280px;
+    padding: 16px; background-color: var(--accent); color: #fff;
+    border: none; border-radius: 30px; font-size: 13px;
+    font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px;
+    text-align: center; cursor: pointer; margin-top: 15px;
     box-shadow: 0 8px 20px rgba(212, 163, 168, 0.3);
     transition: background 0.3s;
   }
   .btn:active { background-color: var(--accent-dark); }
-  .btn-outline { 
-    background-color: transparent; 
-    color: var(--accent-dark); 
-    border: 1px solid var(--accent); 
-    box-shadow: none;
-  }
+  .btn-outline { background-color: transparent; color: var(--accent-dark); border: 1px solid var(--accent); box-shadow: none; }
   .btn-outline:active { background-color: rgba(212, 163, 168, 0.1); }
 
-  /* КАРТОЧКИ */
   .card {
-    background-color: var(--card-bg); 
-    border-radius: 20px; 
-    padding: 35px 25px;
-    width: 100%; 
-    max-width: 340px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.04); 
-    margin-bottom: 20px;
+    background-color: var(--card-bg); border-radius: 20px; padding: 35px 25px;
+    width: 100%; max-width: 340px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.04); margin-bottom: 20px;
     border: 1px solid var(--line);
   }
 
@@ -158,62 +102,25 @@
   .card p { font-size: 14px; color: var(--muted); }
   
   .dress-code {
-    background-color: #fbf7f6; 
-    padding: 20px; 
-    border-radius: 12px;
-    text-align: left; 
-    font-size: 13px; 
-    margin-top: 20px;
-    border-left: 3px solid var(--accent);
-    color: #6b6560;
+    background-color: #fbf7f6; padding: 20px; border-radius: 12px;
+    text-align: left; font-size: 13px; margin-top: 20px;
+    border-left: 3px solid var(--accent); color: #6b6560;
   }
-  .dress-code strong { 
-    color: var(--accent-dark); 
-    display: block; 
-    margin-bottom: 5px; 
-    font-size: 11px; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-  }
+  .dress-code strong { color: var(--accent-dark); display: block; margin-bottom: 5px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
 
-  /* ТАЙМЕР */
-  .timer { 
-    display: flex; 
-    justify-content: center; 
-    gap: 15px; 
-    margin-top: 25px;
-    border-top: 1px solid var(--line);
-    padding-top: 20px;
-  }
+  .timer { display: flex; justify-content: center; gap: 15px; margin-top: 25px; border-top: 1px solid var(--line); padding-top: 20px; }
   .timer div { text-align: center; }
-  .timer b { 
-    font-family: 'Playfair Display', serif;
-    font-size: 30px; 
-    color: var(--accent-dark); 
-    display: block; 
-    line-height: 1;
-    margin-bottom: 5px;
-  }
+  .timer b { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--accent-dark); display: block; line-height: 1; margin-bottom: 5px; }
   .timer span { font-size: 9px; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; }
 
-  /* ФОРМА */
   input, select, textarea {
-    width: 100%; 
-    padding: 15px; 
-    margin-bottom: 12px;
-    border: 1px solid var(--line); 
-    border-radius: 10px;
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 14px;
-    background-color: #faf8f7;
-    color: var(--ink);
+    width: 100%; padding: 15px; margin-bottom: 12px;
+    border: 1px solid var(--line); border-radius: 10px;
+    font-family: 'Montserrat', sans-serif; font-size: 14px;
+    background-color: #faf8f7; color: var(--ink);
     transition: border 0.3s, background 0.3s;
   }
-  input:focus, select:focus, textarea:focus { 
-    outline: none; 
-    border-color: var(--accent); 
-    background-color: #fff;
-  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background-color: #fff; }
 
   .radio { display: none; }
   .heart { font-size: 50px; color: var(--accent-dark); margin-bottom: 20px; }
@@ -228,7 +135,6 @@
 
 <div class="app-container">
 
-  <!-- ЭКРАН 1 -->
   <div class="screen active" id="sc1">
     <div class="label">Приглашение на свадьбу</div>
     <h1 class="names-title">Анастасия <span>&</span> Максим</h1>
@@ -247,7 +153,6 @@
     <label for="s2" class="btn">Далее</label>
   </div>
 
-  <!-- ЭКРАН 2 -->
   <div class="screen" id="sc2">
     <div class="label">Детали</div>
     
@@ -275,7 +180,6 @@
     </div>
   </div>
 
-  <!-- ЭКРАН 3 -->
   <div class="screen" id="sc3">
     <div class="label">Анкета гостя</div>
     
@@ -283,7 +187,7 @@
       <h3 style="margin-bottom: 5px;">Вы придёте?</h3>
       <p style="margin-bottom: 20px;">Пожалуйста, ответьте до 23 декабря</p>
       
-      <form onsubmit="return openTelegram(event)">
+      <form onsubmit="return sendForm(event)">
         <input type="text" id="name" placeholder="Ваше имя и фамилия" required>
         <select id="attend" required>
           <option value="" disabled selected>Вы придёте?</option>
@@ -292,14 +196,13 @@
         </select>
         <textarea id="msg" rows="2" placeholder="Пожелания (необязательно)"></textarea>
         
-        <button type="submit" class="btn" id="subBtn" style="max-width: 100%; margin-top: 5px;">Отправить в Telegram</button>
+        <button type="submit" class="btn" id="subBtn" style="max-width: 100%; margin-top: 5px;">Отправить</button>
       </form>
     </div>
 
     <label for="s2" class="btn btn-outline" style="max-width: 200px;">← Назад</label>
   </div>
 
-  <!-- ЭКРАН 4 -->
   <div class="screen" id="sc4">
     <div class="heart">🤍</div>
     <h2 class="names-title" style="font-size: 48px;">Спасибо!</h2>
@@ -309,7 +212,6 @@
 </div>
 
 <script>
-  // Переключение экранов
   const s1 = document.getElementById('s1');
   const s2 = document.getElementById('s2');
   const s3 = document.getElementById('s3');
@@ -337,7 +239,6 @@
   s3.addEventListener('change', updateScreens);
   s4.addEventListener('change', updateScreens);
 
-  // Таймер
   const targetDate = new Date('2027-01-23T16:00:00+04:00').getTime();
   function updateTimer() {
     const now = new Date().getTime();
@@ -350,10 +251,11 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // ОТКРЫТИЕ TELEGRAM
-  const TG_USERNAME = 'nastya_maxim_2027_bot'; // Имя вашего бота
+  // === АВТОМАТИЧЕСКАЯ ОТПРАВКА В TELEGRAM (ЧЕРЕЗ СКРЫТУЮ ФОРМУ) ===
+  const BOT_TOKEN = '9298279702:AAHMRGI9gc6k4o6Ok1JLjIuqYpNYuf-BSBs';
+  const CHAT_ID = '-1004337417866';
 
-  function openTelegram(e) {
+  function sendForm(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const attend = document.getElementById('attend').value;
@@ -361,18 +263,47 @@
     const btn = document.getElementById('subBtn');
 
     const text = `💌 Свадьба\n👤 Имя: ${name}\n✅ Присутствие: ${attend}\n💬 Пожелания: ${msg || '—'}`;
-    const encodedText = encodeURIComponent(text);
-    
-    // Открываем Telegram с готовым текстом
-    const tgLink = `https://t.me/${TG_USERNAME}?start=${encodedText}`;
-    window.open(tgLink, '_blank');
 
-    // Меняем кнопку и переключаем экран
-    btn.textContent = 'Открываем Telegram...';
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+
+    // Создаем скрытую форму для отправки (обходим блокировки браузера)
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const form = document.createElement('form');
+    form.action = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    form.method = 'POST';
+    form.target = 'hidden_iframe';
+
+    const chatIdField = document.createElement('input');
+    chatIdField.type = 'hidden';
+    chatIdField.name = 'chat_id';
+    chatIdField.value = CHAT_ID;
+
+    const textField = document.createElement('input');
+    textField.type = 'hidden';
+    textField.name = 'text';
+    textField.value = text;
+
+    form.appendChild(chatIdField);
+    form.appendChild(textField);
+    document.body.appendChild(form);
+    
+    form.submit();
+
+    // Мгновенно показываем экран "Спасибо" (запрос уходит в фоне)
     setTimeout(() => {
       s4.checked = true;
       updateScreens();
-    }, 1000);
+      // Очищаем мусор
+      setTimeout(() => {
+        if (form.parentNode) document.body.removeChild(form);
+        if (iframe.parentNode) document.body.removeChild(iframe);
+      }, 1000);
+    }, 800);
     
     return false;
   }
